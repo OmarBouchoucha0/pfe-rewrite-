@@ -100,7 +100,7 @@ export const generateHistoricalData = () => {
     data.push({
       date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
       temperature: Math.floor(Math.random() * 20) + 50,
-      humidity: Math.floor(Math.random() * 30) + 20,
+      humidity: Math.floor(Math.random() * 5) + 20,
       sessions: Math.floor(Math.random() * 5) + 1,
     });
   }

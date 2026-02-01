@@ -71,7 +71,7 @@ export const Layout: React.FC = () => {
               <Button
                 key={item.path}
                 variant={isActive ? 'default' : 'ghost'}
-                className={`w-full justify-start mb-2 ${isSidebarCollapsed ? 'px-2' : ''} ${theme === 'dark' ? (isActive ? 'text-white' : 'text-gray-100') + ' hover:bg-gray-700' : (isActive ? 'text-white' : 'text-gray-900') + ' hover:bg-gray-200'}`}
+                className={`w-full justify-start mb-2 ${isSidebarCollapsed ? 'px-2' : ''} ${theme === 'dark' ? (isActive ? 'text-white' : 'text-gray-100') : (isActive ? 'text-white' : 'text-gray-900')} hover:cursor-pointer`}
                 onClick={() => navigate(item.path)}
                 title={isSidebarCollapsed ? item.label : ''}
               >
