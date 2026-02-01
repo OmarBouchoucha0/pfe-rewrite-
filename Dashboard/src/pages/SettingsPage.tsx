@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { mockSettings, mockUsers } from '../lib/mockData';
 import { useAuth } from '../contexts/AuthContext';
-import { 
+import {
   Settings as SettingsIcon,
   Save,
   RotateCcw,
@@ -80,7 +80,6 @@ export const SettingsPage: React.FC = () => {
                 id="name"
                 value={userProfile.name}
                 onChange={(e) => setUserProfile({ ...userProfile, name: e.target.value })}
-                disabled
               />
             </div>
 
@@ -91,7 +90,6 @@ export const SettingsPage: React.FC = () => {
                   id="email"
                   value={userProfile.email}
                   onChange={(e) => setUserProfile({ ...userProfile, email: e.target.value })}
-                  disabled
                 />
                 <Button variant="outline" size="icon">
                   <Mail className="h-4 w-4" />
@@ -101,7 +99,7 @@ export const SettingsPage: React.FC = () => {
 
             <div className="space-y-2">
               <Label htmlFor="role">Role</Label>
-              <Select value={userProfile.role} disabled>
+              <Select value={userProfile.role} >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
