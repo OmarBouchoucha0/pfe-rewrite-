@@ -18,11 +18,11 @@ import {
 } from 'lucide-react';
 
 export const ControlPage: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState('');
-  const [targetTemp, setTargetTemp] = useState('60');
-  const [targetHumidity, setTargetHumidity] = useState('25');
-  const [dryingTime, setDryingTime] = useState('4');
-  const [isRunning, setIsRunning] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState('Bananas');
+  const [targetTemp, setTargetTemp] = useState('55');
+  const [targetHumidity, setTargetHumidity] = useState('30');
+  const [dryingTime, setDryingTime] = useState('6');
+  const [isRunning, setIsRunning] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
   const currentSession = mockSessions.find(s => s.status === 'running');
