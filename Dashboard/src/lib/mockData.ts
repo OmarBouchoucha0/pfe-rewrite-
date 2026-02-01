@@ -1,10 +1,10 @@
 import type { User, SensorData, DryerSession, DryerSettings } from '../types';
-import { 
-  Apple, 
-  Banana, 
-  Grape, 
-  Cherry, 
-  Circle, 
+import {
+  Apple,
+  Banana,
+  Grape,
+  Cherry,
+  Circle,
   Carrot
 } from 'lucide-react';
 
@@ -34,8 +34,8 @@ export const getProductIcon = (productName: string) => {
 };
 
 export const generateMockSensorData = (): SensorData => ({
-  temperature: Math.floor(Math.random() * 20) + 50,
-  humidity: Math.floor(Math.random() * 30) + 20,
+  temperature: Math.floor(Math.random() * 10) + 50,
+  humidity: Math.floor(Math.random() * 2) + 20,
   airFlow: Math.floor(Math.random() * 10) + 5,
   timestamp: new Date(),
 });
@@ -43,6 +43,14 @@ export const generateMockSensorData = (): SensorData => ({
 export const mockSessions: DryerSession[] = [
   {
     id: '1',
+    product: 'Bananas',
+    startTime: new Date(Date.now() - 1 * 60 * 60 * 1000),
+    targetTemperature: 55,
+    targetHumidity: 30,
+    status: 'running',
+  },
+  {
+    id: '2',
     product: 'Apples',
     startTime: new Date(Date.now() - 2 * 60 * 60 * 1000),
     endTime: new Date(Date.now() - 1 * 60 * 60 * 1000),
@@ -50,14 +58,7 @@ export const mockSessions: DryerSession[] = [
     targetHumidity: 25,
     status: 'completed',
   },
-  {
-    id: '2',
-    product: 'Bananas',
-    startTime: new Date(Date.now() - 1 * 60 * 60 * 1000),
-    targetTemperature: 55,
-    targetHumidity: 30,
-    status: 'running',
-  },
+
   {
     id: '3',
     product: 'Tomatoes',
