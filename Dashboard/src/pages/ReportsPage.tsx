@@ -122,7 +122,7 @@ export const ReportsPage: React.FC = () => {
         </div>
         <div className="flex items-center gap-2">
           <Select value={timeRange} onValueChange={setTimeRange}>
-            <SelectTrigger className="w-32">
+            <SelectTrigger className="w-24 sm:w-32">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -204,7 +204,7 @@ export const ReportsPage: React.FC = () => {
         </TabsList>
 
         <TabsContent value="charts" className="space-y-4">
-          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+          <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
             <Card>
               <CardHeader>
                 <CardTitle>Temperature Trends</CardTitle>
@@ -292,7 +292,7 @@ export const ReportsPage: React.FC = () => {
                       angle={isMobile ? -90 : -45}
                       textAnchor="end"
                       height={isMobile ? 80 : 60}
-                      interval={isMobile ? 'preserveStartEnd' : Math.max(
+                      interval={isMobile ? Math.floor(historicalData.length / 5) : Math.max(
                         1,
                         Math.floor(historicalData.length / 10),
                       )}
@@ -323,7 +323,7 @@ export const ReportsPage: React.FC = () => {
                       angle={isMobile ? -90 : -45}
                       textAnchor="end"
                       height={isMobile ? 80 : 60}
-                      interval={isMobile ? 'preserveStartEnd' : Math.max(
+                      interval={isMobile ? Math.floor(historicalData.length / 5) : Math.max(
                         1,
                         Math.floor(historicalData.length / 10),
                       )}
@@ -365,7 +365,7 @@ export const ReportsPage: React.FC = () => {
                 {filteredSessions.map((session) => (
                   <div
                     key={session.id}
-                    className="flex items-center justify-between p-4 border rounded-lg"
+                    className={`${isMobile ? 'space-y-3' : 'flex items-center justify-between'} p-4 border rounded-lg`}
                   >
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">

@@ -199,6 +199,31 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply border-border outline-ring/50;
+  }
+}
+
+/* Mobile bottom navigation styles */
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Mobile profile sheet adjustments */
+@media (max-width: 768px) {
+  .mobile-profile-sheet {
+    max-height: 80vh;
   }
 }
