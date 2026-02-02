@@ -92,9 +92,9 @@ export const products = [
   'Garlic',
 ];
 
-export const generateHistoricalData = () => {
+export const generateHistoricalData = (days: number = 30) => {
   const data: any[] = [];
-  for (let i = 30; i >= 0; i--) {
+  for (let i = days - 1; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     data.push({

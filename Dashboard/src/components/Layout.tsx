@@ -54,14 +54,12 @@ export const Layout: React.FC = () => {
 
   return (
     <div className={`flex h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className={`${isSidebarCollapsed ? 'w-16' : 'w-64'} ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-r flex flex-col transition-all duration-300 ease-in-out`}>
-        <div className={`p-6 ${isSidebarCollapsed ? 'flex justify-center' : ''}`}>
-          <h1 className={`text-2xl font-bold ${isSidebarCollapsed ? 'hidden' : ''} ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>
+      <div className={`fixed left-0 top-0 h-full ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-r flex flex-col transition-all duration-200 ease-out z-40 will-change-transform shadow-lg ${isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}`}
+           style={{ width: '256px' }}>
+        <div className="p-6">
+          <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>
             Dryer Dashboard
           </h1>
-          {isSidebarCollapsed && (
-            <div className={`text-2xl font-bold ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>D</div>
-          )}
         </div>
         <nav className="flex-1 px-4 pb-4">
           {menuItems.map((item) => {
@@ -71,18 +69,17 @@ export const Layout: React.FC = () => {
               <Button
                 key={item.path}
                 variant={isActive ? 'default' : 'ghost'}
-                className={`w-full justify-start mb-2 ${isSidebarCollapsed ? 'px-2' : ''} ${theme === 'dark' ? (isActive ? 'text-white' : 'text-gray-100') : (isActive ? 'text-white' : 'text-gray-900')} hover:cursor-pointer`}
+                className={`w-full justify-start mb-2 px-4 transition-all duration-200 ease-out ${theme === 'dark' ? (isActive ? 'text-white' : 'text-gray-100') : (isActive ? 'text-white' : 'text-gray-900')} hover:cursor-pointer`}
                 onClick={() => navigate(item.path)}
-                title={isSidebarCollapsed ? item.label : ''}
               >
-                <Icon className={`h-4 w-4 ${isSidebarCollapsed ? 'mx-auto' : 'mr-2'}`} />
-                {!isSidebarCollapsed && item.label}
+                <Icon className="h-4 w-4 mr-3 transition-all duration-200 ease-out" />
+                <span className="transition-opacity duration-200 ease-out">{item.label}</span>
               </Button>
             );
           })}
         </nav>
         <div className={`p-4 border-t space-y-2 ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
-          {!isSidebarCollapsed && user && (
+          {user && (
             <div className="space-y-2 pb-2">
               <div className="flex items-center space-x-2">
                 <Avatar className="h-8 w-8">
@@ -100,13 +97,13 @@ export const Layout: React.FC = () => {
             className="w-full justify-start"
             onClick={handleLogout}
           >
-            <LogOut className={`h-4 w-4 ${isSidebarCollapsed ? 'mx-auto' : 'mr-2'}`} />
-            {!isSidebarCollapsed && 'Logout'}
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
           </Button>
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col">
+      <div className={`flex-1 flex flex-col transition-all duration-200 ease-out ${isSidebarCollapsed ? 'ml-0' : 'ml-64'}`}>
         <header className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b px-4 sm:px-6 py-4`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">

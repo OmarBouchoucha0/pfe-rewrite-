@@ -29,7 +29,7 @@ import {
 
 export const ReportsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState('30');
-  const historicalData = generateHistoricalData().slice(-parseInt(timeRange));
+  const historicalData = generateHistoricalData(parseInt(timeRange));
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -92,7 +92,6 @@ export const ReportsPage: React.FC = () => {
             <SelectContent>
               <SelectItem value="7">Last 7 days</SelectItem>
               <SelectItem value="30">Last 30 days</SelectItem>
-              <SelectItem value="90">Last 90 days</SelectItem>
             </SelectContent>
           </Select>
           <Button onClick={exportData} variant="outline">
