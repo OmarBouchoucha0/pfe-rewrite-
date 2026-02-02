@@ -21,6 +21,7 @@ import {
   mockSessions,
   getProductIcon,
 } from "../lib/mockData";
+import { useIsMobile } from "../hooks/use-mobile";
 import {
   BarChart,
   Bar,
@@ -45,7 +46,13 @@ import {
 
 export const ReportsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState("30");
+  const isMobile = useIsMobile();
   const historicalData = generateHistoricalData(parseInt(timeRange));
+  
+  // Simplify data on mobile for better performance
+  const chartData = isMobile 
+    ? historicalData.filter((_, index) => index % 2 === 0) // Show every other data point
+    : historicalData;
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -205,7 +212,7 @@ export const ReportsPage: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={historicalData}>
+                  <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"
@@ -239,15 +246,15 @@ export const ReportsPage: React.FC = () => {
                 <CardDescription>Daily average humidity levels</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={historicalData}>
+                <ResponsiveContainer width="100%" height={isMobile ? 200 : 300}>
+                  <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"
-                      tick={{ fontSize: 11 }}
-                      angle={-45}
+                      tick={{ fontSize: isMobile ? 10 : 11 }}
+                      angle={isMobile ? -90 : -45}
                       textAnchor="end"
-                      height={60}
+                      height={isMobile ? 80 : 60}
                       interval={Math.max(
                         1,
                         Math.floor(historicalData.length / 10),
@@ -276,16 +283,16 @@ export const ReportsPage: React.FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={historicalData}>
+                <ResponsiveContainer width="100%" height={isMobile ? 200 : 300}>
+                  <BarChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"
-                      tick={{ fontSize: 11 }}
-                      angle={-45}
+                      tick={{ fontSize: isMobile ? 10 : 11 }}
+                      angle={isMobile ? -90 : -45}
                       textAnchor="end"
-                      height={60}
-                      interval={Math.max(
+                      height={isMobile ? 80 : 60}
+                      interval={isMobile ? 'preserveStartEnd' : Math.max(
                         1,
                         Math.floor(historicalData.length / 10),
                       )}
@@ -307,16 +314,16 @@ export const ReportsPage: React.FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={historicalData}>
+                <ResponsiveContainer width="100%" height={isMobile ? 200 : 300}>
+                  <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"
-                      tick={{ fontSize: 11 }}
-                      angle={-45}
+                      tick={{ fontSize: isMobile ? 10 : 11 }}
+                      angle={isMobile ? -90 : -45}
                       textAnchor="end"
-                      height={60}
-                      interval={Math.max(
+                      height={isMobile ? 80 : 60}
+                      interval={isMobile ? 'preserveStartEnd' : Math.max(
                         1,
                         Math.floor(historicalData.length / 10),
                       )}

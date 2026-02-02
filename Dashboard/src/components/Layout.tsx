@@ -13,6 +13,7 @@ import {
 
 import { useAuth } from "../hooks/use-auth";
 import { useTheme } from "../hooks/use-theme";
+import { useIsMobile } from "../hooks/use-mobile";
 import {
   Home,
   Settings,
@@ -31,6 +32,7 @@ export const Layout: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const isMobile = useIsMobile();
 
   const menuItems = [
     { path: "/", label: "Home", icon: Home },
@@ -110,7 +112,9 @@ export const Layout: React.FC = () => {
       </div>
 
       <div
-        className={`flex-1 flex flex-col transition-all duration-200 ease-out ${isSidebarCollapsed ? "ml-0" : "ml-64"}`}
+        className={`flex-1 flex flex-col transition-all duration-200 ease-out ${
+          isMobile ? "ml-0" : isSidebarCollapsed ? "ml-0" : "ml-64"
+        }`}
       >
         <header className="bg-card border-border border-b px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
@@ -119,7 +123,7 @@ export const Layout: React.FC = () => {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                className="h-8 w-8"
+                className="h-8 w-8 md:h-10 md:w-10"
               >
                 {isSidebarCollapsed ? (
                   <ChevronRight className="h-4 w-4" />
@@ -139,7 +143,7 @@ export const Layout: React.FC = () => {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="h-8 w-8"
+                className="h-8 w-8 md:h-10 md:w-10"
               >
                 {theme === "dark" ? (
                   <Sun className="h-4 w-4" />
@@ -151,9 +155,9 @@ export const Layout: React.FC = () => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
+                    className="relative h-8 w-8 md:h-10 md:w-10 rounded-full"
                   >
-                    <Avatar className="h-8 w-8">
+                    <Avatar className="h-8 w-8 md:h-10 md:w-10">
                       <AvatarFallback>
                         {user ? getInitials(user.name) : "U"}
                       </AvatarFallback>

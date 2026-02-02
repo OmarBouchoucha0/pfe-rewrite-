@@ -107,7 +107,7 @@ export const SettingsPage: React.FC = () => {
                     setUserProfile({ ...userProfile, email: e.target.value })
                   }
                 />
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="h-8 w-8 md:h-10 md:w-10">
                   <Mail className="h-4 w-4" />
                 </Button>
               </div>
@@ -137,7 +137,7 @@ export const SettingsPage: React.FC = () => {
                   type="password"
                   placeholder="Enter new password"
                 />
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="h-8 w-8 md:h-10 md:w-10">
                   <Key className="h-4 w-4" />
                 </Button>
               </div>
@@ -249,7 +249,7 @@ export const SettingsPage: React.FC = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2">
             <div className="space-y-4">
               <h4 className="font-medium">Notification Channels</h4>
               <div className="space-y-3">
@@ -391,7 +391,7 @@ export const SettingsPage: React.FC = () => {
         </CardContent>
       </Card>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">

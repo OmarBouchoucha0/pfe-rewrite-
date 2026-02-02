@@ -128,7 +128,7 @@ export const ControlPage: React.FC = () => {
               </Select>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="temp">Temperature</Label>
                 <Select
@@ -198,7 +198,7 @@ export const ControlPage: React.FC = () => {
 
             <Separator />
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               {!isRunning ? (
                 <Button onClick={handleStart} className="flex-1">
                   <Play className="mr-2 h-4 w-4" />
@@ -316,7 +316,7 @@ export const ControlPage: React.FC = () => {
           <CardDescription>Common drying configurations</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {Object.entries(productSettings)
               .slice(0, 8)
               .map(([product, settings]) => (
