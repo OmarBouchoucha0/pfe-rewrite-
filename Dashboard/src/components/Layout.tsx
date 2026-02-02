@@ -11,8 +11,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../hooks/use-auth';
+import { useTheme } from '../hooks/use-theme';
 import {
   Home,
   Settings,
@@ -53,11 +53,11 @@ export const Layout: React.FC = () => {
   };
 
   return (
-    <div className={`flex h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className={`fixed left-0 top-0 h-full ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-r flex flex-col transition-all duration-200 ease-out z-40 will-change-transform shadow-lg ${isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}`}
+    <div className="flex h-screen bg-background">
+      <div className={`fixed left-0 top-0 h-full bg-card border-border border-r flex flex-col transition-all duration-200 ease-out z-40 will-change-transform shadow-lg ${isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}`}
            style={{ width: '256px' }}>
         <div className="p-6">
-          <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>
+          <h1 className="text-2xl font-bold text-foreground">
             Dryer Dashboard
           </h1>
         </div>
@@ -69,7 +69,7 @@ export const Layout: React.FC = () => {
               <Button
                 key={item.path}
                 variant={isActive ? 'default' : 'ghost'}
-                className={`w-full justify-start mb-2 px-4 transition-all duration-200 ease-out ${theme === 'dark' ? (isActive ? 'text-white' : 'text-gray-100') : (isActive ? 'text-white' : 'text-gray-900')} hover:cursor-pointer`}
+                className="w-full justify-start mb-2 px-4 transition-all duration-200 ease-out hover:cursor-pointer"
                 onClick={() => navigate(item.path)}
               >
                 <Icon className="h-4 w-4 mr-3 transition-all duration-200 ease-out" />
@@ -78,7 +78,7 @@ export const Layout: React.FC = () => {
             );
           })}
         </nav>
-        <div className={`p-4 border-t space-y-2 ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+        <div className="p-4 border-t space-y-2 border-border">
           {user && (
             <div className="space-y-2 pb-2">
               <div className="flex items-center space-x-2">
@@ -87,7 +87,7 @@ export const Layout: React.FC = () => {
                 </Avatar>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium truncate">{user.name}</p>
-                  <p className={`text-xs capitalize truncate ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>{user.role}</p>
+                  <p className="text-xs capitalize truncate text-muted-foreground">{user.role}</p>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@ export const Layout: React.FC = () => {
       </div>
 
       <div className={`flex-1 flex flex-col transition-all duration-200 ease-out ${isSidebarCollapsed ? 'ml-0' : 'ml-64'}`}>
-        <header className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b px-4 sm:px-6 py-4`}>
+        <header className="bg-card border-border border-b px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Button
@@ -115,7 +115,7 @@ export const Layout: React.FC = () => {
               >
                 {isSidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
               </Button>
-              <h2 className={`text-xl font-semibold ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>
+              <h2 className="text-xl font-semibold text-foreground">
                 {menuItems.find(item => item.path === location.pathname)?.label}
               </h2>
             </div>
@@ -158,7 +158,7 @@ export const Layout: React.FC = () => {
             </div>
           </div>
         </header>
-        <main className={`flex-1 overflow-auto p-4 sm:p-6 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
+        <main className="flex-1 overflow-auto p-4 sm:p-6 bg-background">
           <Outlet />
         </main>
       </div>

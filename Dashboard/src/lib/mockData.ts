@@ -7,6 +7,7 @@ import {
   Circle,
   Carrot
 } from 'lucide-react';
+import type { LucideIconProps } from '../types';
 
 export const mockUsers: User[] = [
   { id: '1', name: 'John Doe', email: 'john@dryer.com', role: 'admin' },
@@ -14,7 +15,7 @@ export const mockUsers: User[] = [
   { id: '3', name: 'Bob Wilson', email: 'bob@dryer.com', role: 'viewer' },
 ];
 
-export const productIcons: { [key: string]: React.ComponentType<any> } = {
+export const productIcons: { [key: string]: LucideIconProps } = {
   'Apples': Apple,
   'Bananas': Banana,
   'Mangoes': Circle,
@@ -92,8 +93,10 @@ export const products = [
   'Garlic',
 ];
 
-export const generateHistoricalData = (days: number = 30) => {
-  const data: any[] = [];
+import type { HistoricalData } from '../types';
+
+export const generateHistoricalData = (days: number = 30): HistoricalData[] => {
+  const data: HistoricalData[] = [];
   for (let i = days - 1; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);

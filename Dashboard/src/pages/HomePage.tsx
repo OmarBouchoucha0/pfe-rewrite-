@@ -31,28 +31,28 @@ export const HomePage: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'running':
-        return <Play className="h-4 w-4 text-green-500" />;
+        return <Play className="h-4 w-4 text-[var(--status-running-foreground)]" />;
       case 'completed':
-        return <CheckCircle className="h-4 w-4 text-blue-500" />;
+        return <CheckCircle className="h-4 w-4 text-[var(--status-completed-foreground)]" />;
       case 'failed':
-        return <AlertCircle className="h-4 w-4 text-red-500" />;
+        return <AlertCircle className="h-4 w-4 text-[var(--status-failed-foreground)]" />;
       default:
-        return <Clock className="h-4 w-4 text-gray-500" />;
+        return <Clock className="h-4 w-4 text-[var(--status-pending-foreground)]" />;
     }
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'running':
-        return 'bg-green-100 text-green-800';
-      case 'completed':
-        return 'bg-blue-100 text-blue-800';
-      case 'failed':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
+   const getStatusColor = (status: string) => {
+     switch (status) {
+       case 'running':
+         return 'bg-[var(--status-running)] text-[var(--status-running-foreground)]';
+       case 'completed':
+         return 'bg-[var(--status-completed)] text-[var(--status-completed-foreground)]';
+       case 'failed':
+         return 'bg-[var(--status-failed)] text-[var(--status-failed-foreground)]';
+       default:
+         return 'bg-[var(--status-pending)] text-[var(--status-pending-foreground)]';
+     }
+   };
 
   return (
     <div className="space-y-6">

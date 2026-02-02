@@ -4,8 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../hooks/use-auth';
+import { useTheme } from '../hooks/use-theme';
 import { Sun, Moon } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
@@ -27,7 +27,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-background">
       <Card className="w-full max-w-md">
         <CardHeader className="relative">
           <div className="absolute top-2 right-2">
@@ -68,7 +68,7 @@ export const LoginPage: React.FC = () => {
               />
             </div>
             {error && (
-              <div className="text-sm text-red-600 bg-red-50 p-3 rounded">
+              <div className="text-sm text-destructive-foreground bg-destructive/10 p-3 rounded">
                 {error}
               </div>
             )}
@@ -76,7 +76,7 @@ export const LoginPage: React.FC = () => {
               Sign In
             </Button>
           </form>
-          <div className="mt-4 text-xs text-gray-500">
+          <div className="mt-4 text-xs text-muted-foreground">
             <p>Demo users:</p>
             <p>john@dryer.com (Admin)</p>
             <p>jane@dryer.com (Operator)</p>

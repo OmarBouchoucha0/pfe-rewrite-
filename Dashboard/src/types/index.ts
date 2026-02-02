@@ -28,3 +28,12 @@ export interface DryerSettings {
   autoShutoff: boolean;
   notifications: boolean;
 }
+
+export interface HistoricalData {
+  date: string;
+  temperature: number;
+  humidity: number;
+  sessions: number;
+}
+
+export type LucideIconProps = React.ComponentType<{ className?: string; size?: number; color?: string }>;
