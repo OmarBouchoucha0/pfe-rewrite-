@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { products, mockSessions } from '../lib/mockData';
-import { 
-  Play, 
-  Pause, 
-  Square, 
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { products, mockSessions } from "../lib/mockData";
+import {
+  Play,
+  Pause,
+  Square,
   Settings as SettingsIcon,
   Thermometer,
   Droplets,
   Clock,
-  AlertTriangle
-} from 'lucide-react';
+  AlertTriangle,
+} from "lucide-react";
 
 export const ControlPage: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState('Bananas');
-  const [targetTemp, setTargetTemp] = useState('55');
-  const [targetHumidity, setTargetHumidity] = useState('30');
-  const [dryingTime, setDryingTime] = useState('6');
+  const [selectedProduct, setSelectedProduct] = useState("Bananas");
+  const [targetTemp, setTargetTemp] = useState("55");
+  const [targetHumidity, setTargetHumidity] = useState("30");
+  const [dryingTime, setDryingTime] = useState("6");
   const [isRunning, setIsRunning] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
-  const currentSession = mockSessions.find(s => s.status === 'running');
+  const currentSession = mockSessions.find((s) => s.status === "running");
 
   const handleStart = () => {
     if (!selectedProduct) {
-      alert('Please select a product');
+      alert("Please select a product");
       return;
     }
     setIsRunning(true);
@@ -43,25 +55,27 @@ export const ControlPage: React.FC = () => {
   const handleStop = () => {
     setIsRunning(false);
     setIsPaused(false);
-    setSelectedProduct('');
-    setTargetTemp('60');
-    setTargetHumidity('25');
-    setDryingTime('4');
+    setSelectedProduct("");
+    setTargetTemp("60");
+    setTargetHumidity("25");
+    setDryingTime("4");
   };
 
-  const productSettings: { [key: string]: { temp: string; humidity: string; time: string } } = {
-    'Apples': { temp: '60', humidity: '25', time: '4' },
-    'Bananas': { temp: '55', humidity: '30', time: '6' },
-    'Tomatoes': { temp: '65', humidity: '20', time: '3' },
-    'Mangoes': { temp: '55', humidity: '35', time: '8' },
-    'Strawberries': { temp: '50', humidity: '40', time: '5' },
-    'Blueberries': { temp: '50', humidity: '35', time: '6' },
-    'Peaches': { temp: '60', humidity: '30', time: '4' },
-    'Plums': { temp: '55', humidity: '25', time: '5' },
-    'Carrots': { temp: '70', humidity: '15', time: '3' },
-    'Potatoes': { temp: '65', humidity: '20', time: '4' },
-    'Onions': { temp: '60', humidity: '25', time: '3' },
-    'Garlic': { temp: '55', humidity: '20', time: '2' },
+  const productSettings: {
+    [key: string]: { temp: string; humidity: string; time: string };
+  } = {
+    Apples: { temp: "60", humidity: "25", time: "4" },
+    Bananas: { temp: "55", humidity: "30", time: "6" },
+    Tomatoes: { temp: "65", humidity: "20", time: "3" },
+    Mangoes: { temp: "55", humidity: "35", time: "8" },
+    Strawberries: { temp: "50", humidity: "40", time: "5" },
+    Blueberries: { temp: "50", humidity: "35", time: "6" },
+    Peaches: { temp: "60", humidity: "30", time: "4" },
+    Plums: { temp: "55", humidity: "25", time: "5" },
+    Carrots: { temp: "70", humidity: "15", time: "3" },
+    Potatoes: { temp: "65", humidity: "20", time: "4" },
+    Onions: { temp: "60", humidity: "25", time: "3" },
+    Garlic: { temp: "55", humidity: "20", time: "2" },
   };
 
   const handleProductChange = (value: string) => {
@@ -88,13 +102,19 @@ export const ControlPage: React.FC = () => {
           <CardHeader>
             <CardTitle>Drying Session</CardTitle>
             <CardDescription>
-              {currentSession ? 'Session in progress' : 'Start a new drying session'}
+              {currentSession
+                ? "Session in progress"
+                : "Start a new drying session"}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="product">Product Type</Label>
-              <Select value={selectedProduct} onValueChange={handleProductChange} disabled={isRunning}>
+              <Select
+                value={selectedProduct}
+                onValueChange={handleProductChange}
+                disabled={isRunning}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select a product" />
                 </SelectTrigger>
@@ -111,48 +131,66 @@ export const ControlPage: React.FC = () => {
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="temp">Temperature</Label>
-                <Select value={targetTemp} onValueChange={setTargetTemp} disabled={isRunning}>
+                <Select
+                  value={targetTemp}
+                  onValueChange={setTargetTemp}
+                  disabled={isRunning}
+                >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Array.from({ length: 31 }, (_, i) => i + 40).map((temp) => (
-                      <SelectItem key={temp} value={temp.toString()}>
-                        {temp}°C
-                      </SelectItem>
-                    ))}
+                    {Array.from({ length: 31 }, (_, i) => i + 40).map(
+                      (temp) => (
+                        <SelectItem key={temp} value={temp.toString()}>
+                          {temp}°C
+                        </SelectItem>
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="humidity">Humidity</Label>
-                <Select value={targetHumidity} onValueChange={setTargetHumidity} disabled={isRunning}>
+                <Select
+                  value={targetHumidity}
+                  onValueChange={setTargetHumidity}
+                  disabled={isRunning}
+                >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Array.from({ length: 41 }, (_, i) => i + 10).map((humidity) => (
-                      <SelectItem key={humidity} value={humidity.toString()}>
-                        {humidity}%
-                      </SelectItem>
-                    ))}
+                    {Array.from({ length: 41 }, (_, i) => i + 10).map(
+                      (humidity) => (
+                        <SelectItem key={humidity} value={humidity.toString()}>
+                          {humidity}%
+                        </SelectItem>
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="time">Duration</Label>
-                <Select value={dryingTime} onValueChange={setDryingTime} disabled={isRunning}>
+                <Select
+                  value={dryingTime}
+                  onValueChange={setDryingTime}
+                  disabled={isRunning}
+                >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Array.from({ length: 12 }, (_, i) => i + 1).map((hours) => (
-                      <SelectItem key={hours} value={hours.toString()}>
-                        {hours}h
-                      </SelectItem>
-                    ))}
+                    {Array.from({ length: 12 }, (_, i) => i + 1).map(
+                      (hours) => (
+                        <SelectItem key={hours} value={hours.toString()}>
+                          {hours}h
+                        </SelectItem>
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
               </div>
@@ -168,15 +206,19 @@ export const ControlPage: React.FC = () => {
                 </Button>
               ) : (
                 <>
-                  <Button 
-                    onClick={handlePause} 
+                  <Button
+                    onClick={handlePause}
                     variant="outline"
                     className="flex-1"
                   >
                     <Pause className="mr-2 h-4 w-4" />
-                    {isPaused ? 'Resume' : 'Pause'}
+                    {isPaused ? "Resume" : "Pause"}
                   </Button>
-                  <Button onClick={handleStop} variant="destructive" className="flex-1">
+                  <Button
+                    onClick={handleStop}
+                    variant="destructive"
+                    className="flex-1"
+                  >
                     <Square className="mr-2 h-4 w-4" />
                     Stop
                   </Button>
@@ -187,7 +229,7 @@ export const ControlPage: React.FC = () => {
             {isRunning && (
               <div className="space-y-2">
                 <Badge variant={isPaused ? "secondary" : "default"}>
-                  {isPaused ? 'Paused' : 'Running'}
+                  {isPaused ? "Paused" : "Running"}
                 </Badge>
                 <div className="text-sm text-muted-foreground">
                   Session started at {new Date().toLocaleTimeString()}
@@ -210,7 +252,7 @@ export const ControlPage: React.FC = () => {
                   <span className="text-sm font-medium">Current Temp</span>
                 </div>
                 <div className="text-2xl font-bold">
-                  {isRunning ? targetTemp : '--'}°C
+                  {isRunning ? targetTemp : "--"}°C
                 </div>
               </div>
 
@@ -220,7 +262,7 @@ export const ControlPage: React.FC = () => {
                   <span className="text-sm font-medium">Current Humidity</span>
                 </div>
                 <div className="text-2xl font-bold">
-                  {isRunning ? targetHumidity : '--'}%
+                  {isRunning ? targetHumidity : "--"}%
                 </div>
               </div>
             </div>
@@ -233,7 +275,7 @@ export const ControlPage: React.FC = () => {
                 <span className="text-sm font-medium">Elapsed Time</span>
               </div>
               <div className="text-2xl font-bold">
-                {isRunning ? `${Math.floor(Math.random() * 60)}m` : '--'}
+                {isRunning ? `${Math.floor(Math.random() * 60)}m` : "--"}
               </div>
             </div>
 
@@ -245,7 +287,9 @@ export const ControlPage: React.FC = () => {
                 </div>
                 <div className="text-sm text-muted-foreground space-y-1">
                   <div>Optimal for {selectedProduct}</div>
-                  <div>• Target: {targetTemp}°C / {targetHumidity}%</div>
+                  <div>
+                    • Target: {targetTemp}°C / {targetHumidity}%
+                  </div>
                   <div>• Duration: {dryingTime} hours</div>
                 </div>
               </div>
@@ -273,20 +317,22 @@ export const ControlPage: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Object.entries(productSettings).slice(0, 8).map(([product, settings]) => (
-              <Button
-                key={product}
-                variant="outline"
-                className="h-auto p-3 flex flex-col items-start"
-                onClick={() => handleProductChange(product)}
-                disabled={isRunning}
-              >
-                <div className="font-medium">{product}</div>
-                <div className="text-xs text-muted-foreground">
-                  {settings.temp}°C / {settings.humidity}% / {settings.time}h
-                </div>
-              </Button>
-            ))}
+            {Object.entries(productSettings)
+              .slice(0, 8)
+              .map(([product, settings]) => (
+                <Button
+                  key={product}
+                  variant="outline"
+                  className="h-auto p-3 flex flex-col items-start"
+                  onClick={() => handleProductChange(product)}
+                  disabled={isRunning}
+                >
+                  <div className="font-medium">{product}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {settings.temp}°C / {settings.humidity}% / {settings.time}h
+                  </div>
+                </Button>
+              ))}
           </div>
         </CardContent>
       </Card>

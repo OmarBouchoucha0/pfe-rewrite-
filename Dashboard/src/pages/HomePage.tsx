@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { generateMockSensorData, mockSessions, getProductIcon } from '../lib/mockData';
-import { 
-  Thermometer, 
-  Droplets, 
-  Wind, 
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  generateMockSensorData,
+  mockSessions,
+  getProductIcon,
+} from "../lib/mockData";
+import {
+  Thermometer,
+  Droplets,
+  Wind,
   Activity,
   Clock,
   CheckCircle,
   AlertCircle,
-  Play
-} from 'lucide-react';
+  Play,
+} from "lucide-react";
 
 export const HomePage: React.FC = () => {
   const [sensorData, setSensorData] = useState(generateMockSensorData());
@@ -24,35 +34,45 @@ export const HomePage: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const activeSessions = mockSessions.filter(s => s.status === 'running').length;
+  const activeSessions = mockSessions.filter(
+    (s) => s.status === "running",
+  ).length;
 
-  const currentSession = mockSessions.find(s => s.status === 'running');
+  const currentSession = mockSessions.find((s) => s.status === "running");
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'running':
-        return <Play className="h-4 w-4 text-[var(--status-running-foreground)]" />;
-      case 'completed':
-        return <CheckCircle className="h-4 w-4 text-[var(--status-completed-foreground)]" />;
-      case 'failed':
-        return <AlertCircle className="h-4 w-4 text-[var(--status-failed-foreground)]" />;
+      case "running":
+        return (
+          <Play className="h-4 w-4 text-[var(--status-running-foreground)]" />
+        );
+      case "completed":
+        return (
+          <CheckCircle className="h-4 w-4 text-[var(--status-completed-foreground)]" />
+        );
+      case "failed":
+        return (
+          <AlertCircle className="h-4 w-4 text-[var(--status-failed-foreground)]" />
+        );
       default:
-        return <Clock className="h-4 w-4 text-[var(--status-pending-foreground)]" />;
+        return (
+          <Clock className="h-4 w-4 text-[var(--status-pending-foreground)]" />
+        );
     }
   };
 
-   const getStatusColor = (status: string) => {
-     switch (status) {
-       case 'running':
-         return 'bg-[var(--status-running)] text-[var(--status-running-foreground)]';
-       case 'completed':
-         return 'bg-[var(--status-completed)] text-[var(--status-completed-foreground)]';
-       case 'failed':
-         return 'bg-[var(--status-failed)] text-[var(--status-failed-foreground)]';
-       default:
-         return 'bg-[var(--status-pending)] text-[var(--status-pending-foreground)]';
-     }
-   };
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "running":
+        return "bg-[var(--status-running)] text-[var(--status-running-foreground)]";
+      case "completed":
+        return "bg-[var(--status-completed)] text-[var(--status-completed-foreground)]";
+      case "failed":
+        return "bg-[var(--status-failed)] text-[var(--status-failed-foreground)]";
+      default:
+        return "bg-[var(--status-pending)] text-[var(--status-pending-foreground)]";
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -105,14 +125,14 @@ export const HomePage: React.FC = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Sessions</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Active Sessions
+            </CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{activeSessions}</div>
-            <p className="text-xs text-muted-foreground">
-              Currently running
-            </p>
+            <p className="text-xs text-muted-foreground">Currently running</p>
           </CardContent>
         </Card>
       </div>
@@ -122,7 +142,7 @@ export const HomePage: React.FC = () => {
           <CardHeader>
             <CardTitle>Current Session</CardTitle>
             <CardDescription>
-              {currentSession ? 'Currently drying' : 'No active session'}
+              {currentSession ? "Currently drying" : "No active session"}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -131,7 +151,10 @@ export const HomePage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <span className="font-medium">Product:</span>
                   <div className="flex items-center space-x-2">
-                    {React.createElement(getProductIcon(currentSession.product), { className: "h-4 w-4" })}
+                    {React.createElement(
+                      getProductIcon(currentSession.product),
+                      { className: "h-4 w-4" },
+                    )}
                     <span>{currentSession.product}</span>
                   </div>
                 </div>
@@ -146,7 +169,17 @@ export const HomePage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <span className="font-medium">Duration:</span>
                   <span>
-                    {Math.floor((Date.now() - currentSession.startTime.getTime()) / (1000 * 60 * 60))}h {Math.floor(((Date.now() - currentSession.startTime.getTime()) / (1000 * 60)) % 60)}m
+                    {Math.floor(
+                      (Date.now() - currentSession.startTime.getTime()) /
+                        (1000 * 60 * 60),
+                    )}
+                    h{" "}
+                    {Math.floor(
+                      ((Date.now() - currentSession.startTime.getTime()) /
+                        (1000 * 60)) %
+                        60,
+                    )}
+                    m
                   </span>
                 </div>
                 <Badge className={getStatusColor(currentSession.status)}>
@@ -157,7 +190,9 @@ export const HomePage: React.FC = () => {
                 </Badge>
               </div>
             ) : (
-              <p className="text-muted-foreground">No drying session is currently active.</p>
+              <p className="text-muted-foreground">
+                No drying session is currently active.
+              </p>
             )}
           </CardContent>
         </Card>
@@ -173,7 +208,9 @@ export const HomePage: React.FC = () => {
                 <div key={session.id} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      {React.createElement(getProductIcon(session.product), { className: "h-4 w-4" })}
+                      {React.createElement(getProductIcon(session.product), {
+                        className: "h-4 w-4",
+                      })}
                       <span className="font-medium">{session.product}</span>
                     </div>
                     <Badge className={getStatusColor(session.status)}>
@@ -184,11 +221,25 @@ export const HomePage: React.FC = () => {
                     </Badge>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {session.startTime.toLocaleDateString()} {session.startTime.toLocaleTimeString()}
+                    {session.startTime.toLocaleDateString()}{" "}
+                    {session.startTime.toLocaleTimeString()}
                     {session.endTime && (
                       <>
                         <br />
-                        Duration: {Math.floor((session.endTime.getTime() - session.startTime.getTime()) / (1000 * 60 * 60))}h {Math.floor(((session.endTime.getTime() - session.startTime.getTime()) / (1000 * 60)) % 60)}m
+                        Duration:{" "}
+                        {Math.floor(
+                          (session.endTime.getTime() -
+                            session.startTime.getTime()) /
+                            (1000 * 60 * 60),
+                        )}
+                        h{" "}
+                        {Math.floor(
+                          ((session.endTime.getTime() -
+                            session.startTime.getTime()) /
+                            (1000 * 60)) %
+                            60,
+                        )}
+                        m
                       </>
                     )}
                   </div>

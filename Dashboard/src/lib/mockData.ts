@@ -1,33 +1,26 @@
-import type { User, SensorData, DryerSession, DryerSettings } from '../types';
-import {
-  Apple,
-  Banana,
-  Grape,
-  Cherry,
-  Circle,
-  Carrot
-} from 'lucide-react';
-import type { LucideIconProps } from '../types';
+import type { User, SensorData, DryerSession, DryerSettings } from "../types";
+import { Apple, Banana, Grape, Cherry, Circle, Carrot } from "lucide-react";
+import type { LucideIconProps } from "../types";
 
 export const mockUsers: User[] = [
-  { id: '1', name: 'John Doe', email: 'john@dryer.com', role: 'admin' },
-  { id: '2', name: 'Jane Smith', email: 'jane@dryer.com', role: 'operator' },
-  { id: '3', name: 'Bob Wilson', email: 'bob@dryer.com', role: 'viewer' },
+  { id: "1", name: "John Doe", email: "john@dryer.com", role: "admin" },
+  { id: "2", name: "Jane Smith", email: "jane@dryer.com", role: "operator" },
+  { id: "3", name: "Bob Wilson", email: "bob@dryer.com", role: "viewer" },
 ];
 
 export const productIcons: { [key: string]: LucideIconProps } = {
-  'Apples': Apple,
-  'Bananas': Banana,
-  'Mangoes': Circle,
-  'Strawberries': Cherry,
-  'Blueberries': Grape,
-  'Peaches': Apple,
-  'Plums': Circle,
-  'Tomatoes': Cherry,
-  'Carrots': Carrot,
-  'Potatoes': Circle,
-  'Onions': Circle,
-  'Garlic': Circle,
+  Apples: Apple,
+  Bananas: Banana,
+  Mangoes: Circle,
+  Strawberries: Cherry,
+  Blueberries: Grape,
+  Peaches: Apple,
+  Plums: Circle,
+  Tomatoes: Cherry,
+  Carrots: Carrot,
+  Potatoes: Circle,
+  Onions: Circle,
+  Garlic: Circle,
 };
 
 export const getProductIcon = (productName: string) => {
@@ -43,31 +36,31 @@ export const generateMockSensorData = (): SensorData => ({
 
 export const mockSessions: DryerSession[] = [
   {
-    id: '1',
-    product: 'Bananas',
+    id: "1",
+    product: "Bananas",
     startTime: new Date(Date.now() - 1 * 60 * 60 * 1000),
     targetTemperature: 55,
     targetHumidity: 30,
-    status: 'running',
+    status: "running",
   },
   {
-    id: '2',
-    product: 'Apples',
+    id: "2",
+    product: "Apples",
     startTime: new Date(Date.now() - 2 * 60 * 60 * 1000),
     endTime: new Date(Date.now() - 1 * 60 * 60 * 1000),
     targetTemperature: 60,
     targetHumidity: 25,
-    status: 'completed',
+    status: "completed",
   },
 
   {
-    id: '3',
-    product: 'Tomatoes',
+    id: "3",
+    product: "Tomatoes",
     startTime: new Date(Date.now() - 3 * 60 * 60 * 1000),
     endTime: new Date(Date.now() - 2.5 * 60 * 60 * 1000),
     targetTemperature: 65,
     targetHumidity: 20,
-    status: 'completed',
+    status: "completed",
   },
 ];
 
@@ -79,21 +72,21 @@ export const mockSettings: DryerSettings = {
 };
 
 export const products = [
-  'Apples',
-  'Bananas',
-  'Tomatoes',
-  'Mangoes',
-  'Strawberries',
-  'Blueberries',
-  'Peaches',
-  'Plums',
-  'Carrots',
-  'Potatoes',
-  'Onions',
-  'Garlic',
+  "Apples",
+  "Bananas",
+  "Tomatoes",
+  "Mangoes",
+  "Strawberries",
+  "Blueberries",
+  "Peaches",
+  "Plums",
+  "Carrots",
+  "Potatoes",
+  "Onions",
+  "Garlic",
 ];
 
-import type { HistoricalData } from '../types';
+import type { HistoricalData } from "../types";
 
 export const generateHistoricalData = (days: number = 30): HistoricalData[] => {
   const data: HistoricalData[] = [];
@@ -101,7 +94,10 @@ export const generateHistoricalData = (days: number = 30): HistoricalData[] => {
     const date = new Date();
     date.setDate(date.getDate() - i);
     data.push({
-      date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      date: date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      }),
       temperature: Math.floor(Math.random() * 20) + 50,
       humidity: Math.floor(Math.random() * 5) + 20,
       sessions: Math.floor(Math.random() * 5) + 1,

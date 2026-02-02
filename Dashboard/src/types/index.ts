@@ -2,7 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  role: 'admin' | 'operator' | 'viewer';
+  role: "admin" | "operator" | "viewer";
 }
 
 export interface SensorData {
@@ -19,7 +19,7 @@ export interface DryerSession {
   endTime?: Date;
   targetTemperature: number;
   targetHumidity: number;
-  status: 'running' | 'completed' | 'paused' | 'failed';
+  status: "running" | "completed" | "paused" | "failed";
 }
 
 export interface DryerSettings {
@@ -36,4 +36,8 @@ export interface HistoricalData {
   sessions: number;
 }
 
-export type LucideIconProps = React.ComponentType<{ className?: string; size?: number; color?: string }>;
+export type LucideIconProps = React.ComponentType<{
+  className?: string;
+  size?: number;
+  color?: string;
+}>;

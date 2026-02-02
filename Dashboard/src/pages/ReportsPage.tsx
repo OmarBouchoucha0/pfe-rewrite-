@@ -1,43 +1,59 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { generateHistoricalData, mockSessions, getProductIcon } from '../lib/mockData';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  generateHistoricalData,
+  mockSessions,
+  getProductIcon,
+} from "../lib/mockData";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   LineChart,
   Line,
-  Legend
-} from 'recharts';
-import { 
+  Legend,
+} from "recharts";
+import {
   Calendar,
   Download,
   TrendingUp,
   TrendingDown,
   CheckCircle,
   Clock,
-  AlertCircle
-} from 'lucide-react';
+  AlertCircle,
+} from "lucide-react";
 
 export const ReportsPage: React.FC = () => {
-  const [timeRange, setTimeRange] = useState('30');
+  const [timeRange, setTimeRange] = useState("30");
   const historicalData = generateHistoricalData(parseInt(timeRange));
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'completed':
+      case "completed":
         return <CheckCircle className="h-4 w-4 text-green-500" />;
-      case 'running':
+      case "running":
         return <Clock className="h-4 w-4 text-blue-500" />;
-      case 'failed':
+      case "failed":
         return <AlertCircle className="h-4 w-4 text-red-500" />;
       default:
         return null;
@@ -46,40 +62,53 @@ export const ReportsPage: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed':
-        return 'bg-green-100 text-green-800';
-      case 'running':
-        return 'bg-blue-100 text-blue-800';
-      case 'failed':
-        return 'bg-red-100 text-red-800';
+      case "completed":
+        return "bg-green-100 text-green-800";
+      case "running":
+        return "bg-blue-100 text-blue-800";
+      case "failed":
+        return "bg-red-100 text-red-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
-  const filteredSessions = mockSessions.filter(session => {
+  const filteredSessions = mockSessions.filter((session) => {
     const sessionDate = session.startTime;
     const daysAgo = parseInt(timeRange);
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - daysAgo);
     return sessionDate >= cutoffDate;
   });
-  
+
   const totalSessions = filteredSessions.length;
-  const completedSessions = filteredSessions.filter(s => s.status === 'completed').length;
-  const successRate = totalSessions > 0 ? (completedSessions / totalSessions) * 100 : 0;
-  const averageTemp = historicalData.length > 0 ? historicalData.reduce((sum, d) => sum + d.temperature, 0) / historicalData.length : 0;
-  const averageHumidity = historicalData.length > 0 ? historicalData.reduce((sum, d) => sum + d.humidity, 0) / historicalData.length : 0;
+  const completedSessions = filteredSessions.filter(
+    (s) => s.status === "completed",
+  ).length;
+  const successRate =
+    totalSessions > 0 ? (completedSessions / totalSessions) * 100 : 0;
+  const averageTemp =
+    historicalData.length > 0
+      ? historicalData.reduce((sum, d) => sum + d.temperature, 0) /
+        historicalData.length
+      : 0;
+  const averageHumidity =
+    historicalData.length > 0
+      ? historicalData.reduce((sum, d) => sum + d.humidity, 0) /
+        historicalData.length
+      : 0;
 
   const exportData = () => {
-    alert('Export functionality would download CSV/Excel report');
+    alert("Export functionality would download CSV/Excel report");
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Reports & Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Reports & Analytics
+          </h1>
           <p className="text-muted-foreground">
             View dryer performance history and analytics
           </p>
@@ -104,7 +133,9 @@ export const ReportsPage: React.FC = () => {
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Sessions</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Total Sessions
+            </CardTitle>
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -130,7 +161,9 @@ export const ReportsPage: React.FC = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Temperature</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Avg Temperature
+            </CardTitle>
             <TrendingUp className="h-4 w-4 text-orange-500" />
           </CardHeader>
           <CardContent>
@@ -147,7 +180,9 @@ export const ReportsPage: React.FC = () => {
             <TrendingDown className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{averageHumidity.toFixed(1)}%</div>
+            <div className="text-2xl font-bold">
+              {averageHumidity.toFixed(1)}%
+            </div>
             <p className="text-xs text-muted-foreground">
               Average humidity level
             </p>
@@ -169,29 +204,32 @@ export const ReportsPage: React.FC = () => {
                 <CardDescription>Daily average temperature</CardDescription>
               </CardHeader>
               <CardContent>
-<ResponsiveContainer width="100%" height={300}>
-                   <LineChart data={historicalData}>
-                     <CartesianGrid strokeDasharray="3 3" />
-                     <XAxis 
-                       dataKey="date" 
-                       tick={{ fontSize: 11 }}
-                       angle={-45}
-                       textAnchor="end"
-                       height={60}
-                       interval={Math.max(1, Math.floor(historicalData.length / 10))}
-                     />
-                     <YAxis />
-                     <Tooltip />
-                     <Legend />
-                     <Line 
-                       type="monotone" 
-                       dataKey="temperature" 
-                       stroke="#f97316" 
-                       strokeWidth={2}
-                       name="Temperature (°C)"
-                     />
-                   </LineChart>
-                 </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={historicalData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tick={{ fontSize: 11 }}
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                      interval={Math.max(
+                        1,
+                        Math.floor(historicalData.length / 10),
+                      )}
+                    />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="temperature"
+                      stroke="#f97316"
+                      strokeWidth={2}
+                      name="Temperature (°C)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </CardContent>
             </Card>
 
@@ -201,98 +239,107 @@ export const ReportsPage: React.FC = () => {
                 <CardDescription>Daily average humidity levels</CardDescription>
               </CardHeader>
               <CardContent>
-<ResponsiveContainer width="100%" height={300}>
-                   <LineChart data={historicalData}>
-                     <CartesianGrid strokeDasharray="3 3" />
-                     <XAxis 
-                       dataKey="date" 
-                       tick={{ fontSize: 11 }}
-                       angle={-45}
-                       textAnchor="end"
-                       height={60}
-                       interval={Math.max(1, Math.floor(historicalData.length / 10))}
-                     />
-                     <YAxis />
-                     <Tooltip />
-                     <Legend />
-                     <Line 
-                       type="monotone" 
-                       dataKey="humidity" 
-                       stroke="#3b82f6" 
-                       strokeWidth={2}
-                       name="Humidity (%)"
-                     />
-                   </LineChart>
-                 </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={historicalData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tick={{ fontSize: 11 }}
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                      interval={Math.max(
+                        1,
+                        Math.floor(historicalData.length / 10),
+                      )}
+                    />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="humidity"
+                      stroke="#3b82f6"
+                      strokeWidth={2}
+                      name="Humidity (%)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
                 <CardTitle>Daily Sessions</CardTitle>
-                <CardDescription>Number of drying sessions per day</CardDescription>
+                <CardDescription>
+                  Number of drying sessions per day
+                </CardDescription>
               </CardHeader>
               <CardContent>
-<ResponsiveContainer width="100%" height={300}>
-                   <BarChart data={historicalData}>
-                     <CartesianGrid strokeDasharray="3 3" />
-                     <XAxis 
-                       dataKey="date" 
-                       tick={{ fontSize: 11 }}
-                       angle={-45}
-                       textAnchor="end"
-                       height={60}
-                       interval={Math.max(1, Math.floor(historicalData.length / 10))}
-                     />
-                     <YAxis />
-                     <Tooltip />
-                     <Legend />
-                     <Bar 
-                       dataKey="sessions" 
-                       fill="#8b5cf6"
-                       name="Sessions"
-                     />
-                   </BarChart>
-                 </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={historicalData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tick={{ fontSize: 11 }}
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                      interval={Math.max(
+                        1,
+                        Math.floor(historicalData.length / 10),
+                      )}
+                    />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="sessions" fill="#8b5cf6" name="Sessions" />
+                  </BarChart>
+                </ResponsiveContainer>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
                 <CardTitle>Combined Metrics</CardTitle>
-                <CardDescription>Temperature vs Humidity comparison</CardDescription>
+                <CardDescription>
+                  Temperature vs Humidity comparison
+                </CardDescription>
               </CardHeader>
               <CardContent>
-<ResponsiveContainer width="100%" height={300}>
-                   <LineChart data={historicalData}>
-                     <CartesianGrid strokeDasharray="3 3" />
-                     <XAxis 
-                       dataKey="date" 
-                       tick={{ fontSize: 11 }}
-                       angle={-45}
-                       textAnchor="end"
-                       height={60}
-                       interval={Math.max(1, Math.floor(historicalData.length / 10))}
-                     />
-                     <YAxis />
-                     <Tooltip />
-                     <Legend />
-                     <Line 
-                       type="monotone" 
-                       dataKey="temperature" 
-                       stroke="#f97316" 
-                       strokeWidth={2}
-                       name="Temperature (°C)"
-                     />
-                     <Line 
-                       type="monotone" 
-                       dataKey="humidity" 
-                       stroke="#3b82f6" 
-                       strokeWidth={2}
-                       name="Humidity (%)"
-                     />
-                   </LineChart>
-                 </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={historicalData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tick={{ fontSize: 11 }}
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                      interval={Math.max(
+                        1,
+                        Math.floor(historicalData.length / 10),
+                      )}
+                    />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="temperature"
+                      stroke="#f97316"
+                      strokeWidth={2}
+                      name="Temperature (°C)"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="humidity"
+                      stroke="#3b82f6"
+                      strokeWidth={2}
+                      name="Humidity (%)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </CardContent>
             </Card>
           </div>
@@ -302,22 +349,31 @@ export const ReportsPage: React.FC = () => {
           <Card>
             <CardHeader>
               <CardTitle>Session History</CardTitle>
-              <CardDescription>Detailed history of all drying sessions</CardDescription>
+              <CardDescription>
+                Detailed history of all drying sessions
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {filteredSessions.map((session) => (
-                  <div key={session.id} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div
+                    key={session.id}
+                    className="flex items-center justify-between p-4 border rounded-lg"
+                  >
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
-                        {React.createElement(getProductIcon(session.product), { className: "h-4 w-4" })}
+                        {React.createElement(getProductIcon(session.product), {
+                          className: "h-4 w-4",
+                        })}
                         <div className="font-medium">{session.product}</div>
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {session.startTime.toLocaleDateString()} at {session.startTime.toLocaleTimeString()}
+                        {session.startTime.toLocaleDateString()} at{" "}
+                        {session.startTime.toLocaleTimeString()}
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        Target: {session.targetTemperature}°C / {session.targetHumidity}%
+                        Target: {session.targetTemperature}°C /{" "}
+                        {session.targetHumidity}%
                       </div>
                     </div>
                     <div className="text-right space-y-2">
@@ -329,7 +385,20 @@ export const ReportsPage: React.FC = () => {
                       </Badge>
                       {session.endTime && (
                         <div className="text-sm text-muted-foreground">
-                          Duration: {Math.floor((session.endTime.getTime() - session.startTime.getTime()) / (1000 * 60 * 60))}h {Math.floor(((session.endTime.getTime() - session.startTime.getTime()) / (1000 * 60)) % 60)}m
+                          Duration:{" "}
+                          {Math.floor(
+                            (session.endTime.getTime() -
+                              session.startTime.getTime()) /
+                              (1000 * 60 * 60),
+                          )}
+                          h{" "}
+                          {Math.floor(
+                            ((session.endTime.getTime() -
+                              session.startTime.getTime()) /
+                              (1000 * 60)) %
+                              60,
+                          )}
+                          m
                         </div>
                       )}
                     </div>

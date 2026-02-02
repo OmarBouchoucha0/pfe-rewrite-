@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { Badge } from '@/components/ui/badge';
-import { mockSettings, mockUsers } from '../lib/mockData';
-import { useAuth } from '../hooks/use-auth';
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { mockSettings, mockUsers } from "../lib/mockData";
+import { useAuth } from "../hooks/use-auth";
 import {
   Settings as SettingsIcon,
   Save,
@@ -18,16 +30,16 @@ import {
   Smartphone,
   User as UserIcon,
   Mail,
-  Key
-} from 'lucide-react';
+  Key,
+} from "lucide-react";
 
 export const SettingsPage: React.FC = () => {
   const { user } = useAuth();
   const [settings, setSettings] = useState(mockSettings);
   const [userProfile, setUserProfile] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    role: user?.role || 'viewer'
+    name: user?.name || "",
+    email: user?.email || "",
+    role: user?.role || "viewer",
   });
 
   const [notifications, setNotifications] = useState({
@@ -37,20 +49,20 @@ export const SettingsPage: React.FC = () => {
     sessionComplete: true,
     temperatureAlerts: true,
     humidityAlerts: false,
-    maintenance: true
+    maintenance: true,
   });
 
   const handleSaveSettings = () => {
-    alert('Settings saved successfully!');
+    alert("Settings saved successfully!");
   };
 
   const handleResetSettings = () => {
     setSettings(mockSettings);
-    alert('Settings reset to defaults');
+    alert("Settings reset to defaults");
   };
 
   const handleSaveProfile = () => {
-    alert('Profile updated successfully!');
+    alert("Profile updated successfully!");
   };
 
   return (
@@ -79,7 +91,9 @@ export const SettingsPage: React.FC = () => {
               <Input
                 id="name"
                 value={userProfile.name}
-                onChange={(e) => setUserProfile({ ...userProfile, name: e.target.value })}
+                onChange={(e) =>
+                  setUserProfile({ ...userProfile, name: e.target.value })
+                }
               />
             </div>
 
@@ -89,7 +103,9 @@ export const SettingsPage: React.FC = () => {
                 <Input
                   id="email"
                   value={userProfile.email}
-                  onChange={(e) => setUserProfile({ ...userProfile, email: e.target.value })}
+                  onChange={(e) =>
+                    setUserProfile({ ...userProfile, email: e.target.value })
+                  }
                 />
                 <Button variant="outline" size="icon">
                   <Mail className="h-4 w-4" />
@@ -99,7 +115,7 @@ export const SettingsPage: React.FC = () => {
 
             <div className="space-y-2">
               <Label htmlFor="role">Role</Label>
-              <Select value={userProfile.role} >
+              <Select value={userProfile.role}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -151,7 +167,12 @@ export const SettingsPage: React.FC = () => {
                 id="maxTemp"
                 type="number"
                 value={settings.maxTemperature}
-                onChange={(e) => setSettings({ ...settings, maxTemperature: parseInt(e.target.value) })}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    maxTemperature: parseInt(e.target.value),
+                  })
+                }
               />
             </div>
 
@@ -161,7 +182,12 @@ export const SettingsPage: React.FC = () => {
                 id="minHumidity"
                 type="number"
                 value={settings.minHumidity}
-                onChange={(e) => setSettings({ ...settings, minHumidity: parseInt(e.target.value) })}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    minHumidity: parseInt(e.target.value),
+                  })
+                }
               />
             </div>
 
@@ -172,7 +198,9 @@ export const SettingsPage: React.FC = () => {
                   id="autoShutoff"
                   type="checkbox"
                   checked={settings.autoShutoff}
-                  onChange={(e) => setSettings({ ...settings, autoShutoff: e.target.checked })}
+                  onChange={(e) =>
+                    setSettings({ ...settings, autoShutoff: e.target.checked })
+                  }
                   className="h-4 w-4"
                 />
               </div>
@@ -183,7 +211,12 @@ export const SettingsPage: React.FC = () => {
                   id="notifications"
                   type="checkbox"
                   checked={settings.notifications}
-                  onChange={(e) => setSettings({ ...settings, notifications: e.target.checked })}
+                  onChange={(e) =>
+                    setSettings({
+                      ...settings,
+                      notifications: e.target.checked,
+                    })
+                  }
                   className="h-4 w-4"
                 />
               </div>
@@ -229,7 +262,12 @@ export const SettingsPage: React.FC = () => {
                     id="emailNotif"
                     type="checkbox"
                     checked={notifications.email}
-                    onChange={(e) => setNotifications({ ...notifications, email: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        email: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -243,7 +281,12 @@ export const SettingsPage: React.FC = () => {
                     id="pushNotif"
                     type="checkbox"
                     checked={notifications.push}
-                    onChange={(e) => setNotifications({ ...notifications, push: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        push: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -257,7 +300,12 @@ export const SettingsPage: React.FC = () => {
                     id="smsNotif"
                     type="checkbox"
                     checked={notifications.sms}
-                    onChange={(e) => setNotifications({ ...notifications, sms: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        sms: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -273,7 +321,12 @@ export const SettingsPage: React.FC = () => {
                     id="sessionComplete"
                     type="checkbox"
                     checked={notifications.sessionComplete}
-                    onChange={(e) => setNotifications({ ...notifications, sessionComplete: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        sessionComplete: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -284,7 +337,12 @@ export const SettingsPage: React.FC = () => {
                     id="tempAlerts"
                     type="checkbox"
                     checked={notifications.temperatureAlerts}
-                    onChange={(e) => setNotifications({ ...notifications, temperatureAlerts: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        temperatureAlerts: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -295,7 +353,12 @@ export const SettingsPage: React.FC = () => {
                     id="humidityAlerts"
                     type="checkbox"
                     checked={notifications.humidityAlerts}
-                    onChange={(e) => setNotifications({ ...notifications, humidityAlerts: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        humidityAlerts: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -306,7 +369,12 @@ export const SettingsPage: React.FC = () => {
                     id="maintenance"
                     type="checkbox"
                     checked={notifications.maintenance}
-                    onChange={(e) => setNotifications({ ...notifications, maintenance: e.target.checked })}
+                    onChange={(e) =>
+                      setNotifications({
+                        ...notifications,
+                        maintenance: e.target.checked,
+                      })
+                    }
                     className="h-4 w-4"
                   />
                 </div>
@@ -330,9 +398,7 @@ export const SettingsPage: React.FC = () => {
               <Database className="h-5 w-5" />
               Data Management
             </CardTitle>
-            <CardDescription>
-              Export and manage your dryer data
-            </CardDescription>
+            <CardDescription>Export and manage your dryer data</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -388,10 +454,15 @@ export const SettingsPage: React.FC = () => {
               <h4 className="font-medium">Active Users</h4>
               <div className="space-y-2">
                 {mockUsers.map((u) => (
-                  <div key={u.id} className="flex items-center justify-between p-2 border rounded">
+                  <div
+                    key={u.id}
+                    className="flex items-center justify-between p-2 border rounded"
+                  >
                     <div>
                       <div className="font-medium">{u.name}</div>
-                      <div className="text-sm text-muted-foreground">{u.email}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {u.email}
+                      </div>
                     </div>
                     <Badge variant="outline" className="capitalize">
                       {u.role}
@@ -417,7 +488,9 @@ export const SettingsPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="sessionTimeout">Session Timeout (minutes)</Label>
+                  <Label htmlFor="sessionTimeout">
+                    Session Timeout (minutes)
+                  </Label>
                   <Select defaultValue="30">
                     <SelectTrigger className="w-24">
                       <SelectValue />

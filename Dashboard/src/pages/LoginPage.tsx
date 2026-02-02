@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useAuth } from '../hooks/use-auth';
-import { useTheme } from '../hooks/use-theme';
-import { Sun, Moon } from 'lucide-react';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useAuth } from "../hooks/use-auth";
+import { useTheme } from "../hooks/use-theme";
+import { Sun, Moon } from "lucide-react";
 
 export const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { login } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (login(email, password)) {
-      toast.success('Login successful!');
+      toast.success("Login successful!");
       window.location.reload();
     } else {
-      toast.error('Invalid credentials. Use any email from the user list with password "password"');
-      setError('');
+      toast.error(
+        'Invalid credentials. Use any email from the user list with password "password"',
+      );
+      setError("");
     }
   };
 
@@ -37,11 +45,17 @@ export const LoginPage: React.FC = () => {
               onClick={toggleTheme}
               className="h-8 w-8"
             >
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
             </Button>
           </div>
           <CardTitle>Dryer Dashboard</CardTitle>
-          <CardDescription>Sign in to access the dryer control system</CardDescription>
+          <CardDescription>
+            Sign in to access the dryer control system
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
