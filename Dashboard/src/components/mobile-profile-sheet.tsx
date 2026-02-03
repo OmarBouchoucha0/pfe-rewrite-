@@ -38,7 +38,7 @@ export const MobileProfileSheet: React.FC = () => {
           className="h-12 w-12 rounded-lg"
           aria-label="Profile menu"
         >
-          <User className="h-6 w-6" />
+          <User className="h-6 w-6 dark:text-white" />
         </Button>
       </SheetTrigger>
       
@@ -72,17 +72,17 @@ export const MobileProfileSheet: React.FC = () => {
             <h4 className="text-sm font-medium text-foreground">Appearance</h4>
             <Button
               variant="outline"
-              className="w-full justify-start"
+              className="w-full justify-start dark:text-white"
               onClick={toggleTheme}
             >
               {theme === "dark" ? (
                 <>
-                  <Sun className="mr-3 h-5 w-5" />
+                  <Sun className="mr-3 h-5 w-5 dark:text-white" />
                   Switch to Light Mode
                 </>
               ) : (
                 <>
-                  <Moon className="mr-3 h-5 w-5" />
+                  <Moon className="mr-3 h-5 w-5 dark:text-white" />
                   Switch to Dark Mode
                 </>
               )}
@@ -104,7 +104,7 @@ export const MobileProfileSheet: React.FC = () => {
           {/* Close Button */}
           <Button
             variant="outline"
-            className="w-full"
+            className="w-full dark:text-white"
             onClick={() => setIsOpen(false)}
           >
             Close

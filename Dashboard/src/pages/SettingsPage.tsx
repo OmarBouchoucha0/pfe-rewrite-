@@ -31,7 +31,6 @@ import {
   Smartphone,
   User as UserIcon,
   Mail,
-  Key,
 } from "lucide-react";
 
 export const SettingsPage: React.FC = () => {
@@ -69,7 +68,7 @@ export const SettingsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Settings</h1>
         <p className="text-muted-foreground">
           Manage your dryer settings and preferences
         </p>
@@ -171,6 +170,7 @@ export const SettingsPage: React.FC = () => {
                     maxTemperature: parseInt(e.target.value),
                   })
                 }
+                className="no-spinner"
               />
             </div>
 
@@ -186,6 +186,7 @@ export const SettingsPage: React.FC = () => {
                     minHumidity: parseInt(e.target.value),
                   })
                 }
+                className="no-spinner"
               />
             </div>
 

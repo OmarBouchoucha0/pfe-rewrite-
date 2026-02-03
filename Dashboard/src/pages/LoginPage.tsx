@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "../hooks/use-auth";
 import { useTheme } from "../hooks/use-theme";
-import { useIsMobile } from "../hooks/use-mobile";
 import { Sun, Moon } from "lucide-react";
 
 export const LoginPage: React.FC = () => {
@@ -21,7 +20,6 @@ export const LoginPage: React.FC = () => {
   const [error, setError] = useState("");
   const { login } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  const isMobile = useIsMobile();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,8 +35,8 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <Card className={`w-full ${isMobile ? 'max-w-sm' : 'max-w-md'} mx-4`}>
+    <div className="h-screen overflow-hidden flex items-center justify-center bg-background lg:p-4">
+      <Card className="w-full h-screen rounded-none border-0 lg:h-auto lg:max-w-md lg:rounded-xl lg:border lg:mx-4">
         <CardHeader className="relative">
           <div className="absolute top-2 right-2">
             <Button
@@ -92,12 +90,14 @@ export const LoginPage: React.FC = () => {
               Sign In
             </Button>
           </form>
-          <div className="mt-4 text-xs sm:text-sm text-muted-foreground">
-            <p>Demo users:</p>
-            <p>john@dryer.com (Admin)</p>
-            <p>jane@dryer.com (Operator)</p>
-            <p>bob@dryer.com (Viewer)</p>
-            <p>Password: password</p>
+          <div className="mt-4 text-xs sm:text-sm text-muted-foreground lg:block">
+            <p className="lg:mb-1">Demo users:</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 lg:block">
+              <p>john@dryer.com (Admin)</p>
+              <p>jane@dryer.com (Operator)</p>
+              <p>bob@dryer.com (Viewer)</p>
+              <p>Password: password</p>
+            </div>
           </div>
         </CardContent>
       </Card>

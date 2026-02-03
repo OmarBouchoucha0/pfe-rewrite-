@@ -61,7 +61,7 @@ export const BottomNavigation: React.FC = () => {
               title={item.label}
               aria-label={item.label}
             >
-              <Icon className="h-6 w-6" />
+              <Icon className={`h-6 w-6 ${!isActive ? 'dark:text-white' : ''}`} />
             </Button>
           );
         })}

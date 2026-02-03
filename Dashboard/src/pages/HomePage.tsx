@@ -63,20 +63,20 @@ export const HomePage: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "running":
-        return "bg-[var(--status-running)] text-[var(--status-running-foreground)]";
+        return "status-running";
       case "completed":
-        return "bg-[var(--status-completed)] text-[var(--status-completed-foreground)]";
+        return "status-completed";
       case "failed":
-        return "bg-[var(--status-failed)] text-[var(--status-failed-foreground)]";
+        return "status-failed";
       default:
-        return "bg-[var(--status-pending)] text-[var(--status-pending-foreground)]";
+        return "status-pending";
     }
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
         <p className="text-muted-foreground">
           Monitor your dryer performance and current status
         </p>
@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
             <Thermometer className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{sensorData.temperature}°C</div>
+            <div className="text-3xl font-bold">{sensorData.temperature}°C</div>
             <p className="text-xs text-muted-foreground">
               Current dryer temperature
             </p>
@@ -102,7 +102,7 @@ export const HomePage: React.FC = () => {
             <Droplets className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{sensorData.humidity}%</div>
+            <div className="text-3xl font-bold">{sensorData.humidity}%</div>
             <p className="text-xs text-muted-foreground">
               Current humidity level
             </p>
@@ -115,7 +115,7 @@ export const HomePage: React.FC = () => {
             <Wind className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{sensorData.airFlow} m³/h</div>
+            <div className="text-3xl font-bold">{sensorData.airFlow} m³/h</div>
             <p className="text-xs text-muted-foreground">
               Current air circulation
             </p>
@@ -130,7 +130,7 @@ export const HomePage: React.FC = () => {
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{activeSessions}</div>
+            <div className="text-3xl font-bold">{activeSessions}</div>
             <p className="text-xs text-muted-foreground">Currently running</p>
           </CardContent>
         </Card>
@@ -181,7 +181,7 @@ export const HomePage: React.FC = () => {
                     m
                   </span>
                 </div>
-                <Badge className={getStatusColor(currentSession.status)}>
+                <Badge variant="secondary" className={getStatusColor(currentSession.status)}>
                   <span className="flex items-center gap-1">
                     {getStatusIcon(currentSession.status)}
                     {currentSession.status}
@@ -215,7 +215,7 @@ export const HomePage: React.FC = () => {
                       })}
                       <span className="font-medium">{session.product}</span>
                     </div>
-                    <Badge className={getStatusColor(session.status)}>
+                    <Badge variant="secondary" className={getStatusColor(session.status)}>
                       <span className="flex items-center gap-1">
                         {getStatusIcon(session.status)}
                         {session.status}

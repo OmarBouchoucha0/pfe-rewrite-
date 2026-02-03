@@ -80,8 +80,8 @@ export const Layout: React.FC = () => {
                   className="w-full justify-start mb-2 px-4 transition-all duration-200 ease-out hover:cursor-pointer"
                   onClick={() => navigate(item.path)}
                 >
-                  <Icon className="h-4 w-4 mr-3 transition-all duration-200 ease-out" />
-                  <span className="text-foreground transition-opacity duration-200 ease-out">
+                  <Icon className={`h-4 w-4 mr-3 transition-all duration-200 ease-out ${!isActive ? 'dark:text-white' : ''}`} />
+                  <span className={`transition-opacity duration-200 ease-out ${!isActive ? 'text-foreground' : ''}`}>
                     {item.label}
                   </span>
                 </Button>
@@ -96,7 +96,7 @@ export const Layout: React.FC = () => {
                     <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{user.name}</p>
+                    <p className="text-sm font-medium truncate text-foreground">{user.name}</p>
                     <p className="text-xs capitalize truncate text-muted-foreground">
                       {user.role}
                     </p>
@@ -106,7 +106,7 @@ export const Layout: React.FC = () => {
             )}
             <Button
               variant="outline"
-              className="w-full justify-start"
+              className="w-full justify-start dark:text-white"
               onClick={handleLogout}
             >
               <LogOut className="mr-2 h-4 w-4" />
@@ -153,7 +153,7 @@ export const Layout: React.FC = () => {
                   variant="ghost"
                   size="icon"
                   onClick={toggleTheme}
-                  className="h-8 w-8 md:h-10 md:w-10"
+                  className="h-8 w-8 md:h-10 md:w-10 dark:text-white"
                 >
                   {theme === "dark" ? (
                     <Sun className="h-4 w-4" />
@@ -183,7 +183,7 @@ export const Layout: React.FC = () => {
                   <DropdownMenuContent className="w-56" align="end" forceMount>
                     <DropdownMenuLabel className="font-normal">
                       <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">
+                        <p className="text-sm font-medium leading-none text-foreground">
                           {user?.name}
                         </p>
                         <p className="text-xs leading-none text-muted-foreground">

@@ -142,13 +142,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --status-running: oklch(0.8 0.25 142);
-  --status-running-foreground: oklch(0.1 0 0);
-  --status-completed: oklch(0.8 0.2 220);
-  --status-completed-foreground: oklch(0.1 0 0);
-  --status-failed: oklch(0.8 0.2 15);
-  --status-failed-foreground: oklch(0.1 0 0);
-  --status-pending: oklch(0.9 0.02 0);
+  --status-running: oklch(0.7 0.25 142);
+  --status-running-foreground: oklch(0.05 0 0);
+  --status-completed: oklch(0.7 0.25 220);
+  --status-completed-foreground: oklch(0.05 0 0);
+  --status-failed: oklch(0.7 0.25 15);
+  --status-failed-foreground: oklch(0.05 0 0);
+  --status-pending: oklch(0.85 0.05 60);
   --status-pending-foreground: oklch(0.3 0 0);
 }
 
@@ -167,7 +167,7 @@
   --muted-foreground: oklch(0.7 0 0);
   --accent: oklch(0.25 0 0);
   --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
@@ -184,11 +184,34 @@
   --sidebar-accent-foreground: oklch(1 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --status-running: oklch(0.6 0.2 142);
---status-running-foreground: oklch(0.95 0 0);
-  --status-completed-foreground: oklch(0.95 0 0);
-  --status-failed-foreground: oklch(0.95 0 0);
-  --status-pending-foreground: oklch(0.9 0 0);
+  --status-running: oklch(0.5 0.2 142);
+  --status-running-foreground: oklch(0.98 0 0);
+  --status-completed: oklch(0.6 0.2 220);
+  --status-completed-foreground: oklch(0.98 0 0);
+  --status-failed: oklch(0.6 0.2 15);
+  --status-failed-foreground: oklch(0.98 0 0);
+  --status-pending: oklch(0.7 0.05 60);
+  --status-pending-foreground: oklch(0.95 0 0);
+}
+
+.status-running {
+  background-color: var(--status-running);
+  color: var(--status-running-foreground);
+}
+
+.status-completed {
+  background-color: var(--status-completed);
+  color: var(--status-completed-foreground);
+}
+
+.status-failed {
+  background-color: var(--status-failed);
+  color: var(--status-failed-foreground);
+}
+
+.status-pending {
+  background-color: var(--status-pending);
+  color: var(--status-pending-foreground);
 }
 
 @layer base {
@@ -223,4 +246,15 @@
   .mobile-profile-sheet {
     max-height: 80vh;
   }
+}
+
+/* Hide number input spinners */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
 }

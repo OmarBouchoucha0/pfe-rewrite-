@@ -91,7 +91,7 @@ export const ControlPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dryer Control</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Dryer Control</h1>
         <p className="text-muted-foreground">
           Control your dryer operations and configure drying parameters
         </p>
@@ -108,7 +108,7 @@ export const ControlPage: React.FC = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
+            <div className="space-y-2 hidden lg:block">
               <Label htmlFor="product">Product Type</Label>
               <Select
                 value={selectedProduct}
@@ -128,7 +128,27 @@ export const ControlPage: React.FC = () => {
               </Select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="space-y-2 lg:hidden">
+                <Label htmlFor="product-mobile">Product Type</Label>
+                <Select
+                  value={selectedProduct}
+                  onValueChange={handleProductChange}
+                  disabled={isRunning}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a product" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {products.map((product) => (
+                      <SelectItem key={product} value={product}>
+                        {product}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="temp">Temperature</Label>
                 <Select

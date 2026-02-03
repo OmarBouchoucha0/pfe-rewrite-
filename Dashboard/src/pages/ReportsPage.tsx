@@ -34,7 +34,7 @@ import {
   Line,
   Legend,
 } from "recharts";
-import { CheckCircle, Clock, AlertCircle, Monitor, Smartphone, Download } from "lucide-react";
+import { CheckCircle, Clock, AlertCircle, Play, Monitor, Smartphone, Download } from "lucide-react";
 
 export const ReportsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState("30");
@@ -48,27 +48,35 @@ export const ReportsPage: React.FC = () => {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "completed":
-        return <CheckCircle className="h-4 w-4 text-[var(--status-completed)]" />;
       case "running":
-        return <Clock className="h-4 w-4 text-[var(--status-running)]" />;
+        return (
+          <Play className="h-4 w-4 text-[var(--status-running-foreground)]" />
+        );
+      case "completed":
+        return (
+          <CheckCircle className="h-4 w-4 text-[var(--status-completed-foreground)]" />
+        );
       case "failed":
-        return <AlertCircle className="h-4 w-4 text-[var(--status-failed)]" />;
+        return (
+          <AlertCircle className="h-4 w-4 text-[var(--status-failed-foreground)]" />
+        );
       default:
-        return null;
+        return (
+          <Clock className="h-4 w-4 text-[var(--status-pending-foreground)]" />
+        );
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "running":
-        return "bg-[var(--status-running)] text-[var(--status-running-foreground)]";
+        return "status-running";
       case "completed":
-        return "bg-[var(--status-completed)] text-[var(--status-completed-foreground)]";
+        return "status-completed";
       case "failed":
-        return "bg-[var(--status-failed)] text-[var(--status-failed-foreground)]";
+        return "status-failed";
       default:
-        return "bg-[var(--status-pending)] text-[var(--status-pending-foreground)]";
+        return "status-pending";
     }
   };
 
@@ -82,7 +90,7 @@ export const ReportsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Reports</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Reports</h1>
           <p className="text-muted-foreground">
             View dryer performance history and analytics
           </p>
@@ -91,7 +99,7 @@ export const ReportsPage: React.FC = () => {
           className={`${isMobile ? "flex flex-col gap-2" : "flex items-center gap-2"}`}
         >
           <Select value={timeRange} onValueChange={setTimeRange}>
-            <SelectTrigger className="w-full sm:w-32">
+            <SelectTrigger className="w-full sm:w-32 dark:text-white">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -102,7 +110,7 @@ export const ReportsPage: React.FC = () => {
           <Button
             onClick={exportData}
             variant="outline"
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto dark:text-white"
           >
             <Download className="mr-2 h-4 w-4" />
             Export Data
@@ -172,25 +180,25 @@ export const ReportsPage: React.FC = () => {
                         }
                       />
                       <YAxis tick={{ fill: 'var(--foreground)' }} />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'var(--popover)', 
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'var(--popover)',
                           color: 'var(--popover-foreground)',
                           border: '1px solid var(--border)',
                           borderRadius: 'var(--radius)',
                           fontSize: '12px'
-                        }} 
-                        labelStyle={{ 
+                        }}
+                        labelStyle={{
                           color: 'var(--foreground)',
                           fontWeight: 'bold'
                         }}
                       />
-                      <Legend 
-                        wrapperStyle={{ 
+                      <Legend
+                        wrapperStyle={{
                           color: 'var(--foreground)',
                           fontSize: '12px',
                           paddingTop: '16px'
-                        }} 
+                        }}
                         iconType="line"
                       />
                       <Line
@@ -234,25 +242,25 @@ export const ReportsPage: React.FC = () => {
                         }
                       />
                       <YAxis tick={{ fill: 'var(--foreground)' }} />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'var(--popover)', 
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'var(--popover)',
                           color: 'var(--popover-foreground)',
                           border: '1px solid var(--border)',
                           borderRadius: 'var(--radius)',
                           fontSize: '12px'
-                        }} 
-                        labelStyle={{ 
+                        }}
+                        labelStyle={{
                           color: 'var(--foreground)',
                           fontWeight: 'bold'
                         }}
                       />
-                      <Legend 
-                        wrapperStyle={{ 
+                      <Legend
+                        wrapperStyle={{
                           color: 'var(--foreground)',
                           fontSize: '12px',
                           paddingTop: '16px'
-                        }} 
+                        }}
                         iconType="line"
                       />
                       <Line
@@ -296,25 +304,25 @@ export const ReportsPage: React.FC = () => {
                         }
                       />
                       <YAxis tick={{ fill: 'var(--foreground)' }} />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'var(--popover)', 
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'var(--popover)',
                           color: 'var(--popover-foreground)',
                           border: '1px solid var(--border)',
                           borderRadius: 'var(--radius)',
                           fontSize: '12px'
-                        }} 
-                        labelStyle={{ 
+                        }}
+                        labelStyle={{
                           color: 'var(--foreground)',
                           fontWeight: 'bold'
                         }}
                       />
-                      <Legend 
-                        wrapperStyle={{ 
+                      <Legend
+                        wrapperStyle={{
                           color: 'var(--foreground)',
                           fontSize: '12px',
                           paddingTop: '16px'
-                        }} 
+                        }}
                         iconType="rect"
                       />
                       <Bar dataKey="sessions" fill="var(--chart-3)" name="Sessions" />
@@ -353,25 +361,25 @@ export const ReportsPage: React.FC = () => {
                         }
                       />
                       <YAxis tick={{ fill: 'var(--foreground)' }} />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'var(--popover)', 
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'var(--popover)',
                           color: 'var(--popover-foreground)',
                           border: '1px solid var(--border)',
                           borderRadius: 'var(--radius)',
                           fontSize: '12px'
-                        }} 
-                        labelStyle={{ 
+                        }}
+                        labelStyle={{
                           color: 'var(--foreground)',
                           fontWeight: 'bold'
                         }}
                       />
-                      <Legend 
-                        wrapperStyle={{ 
+                      <Legend
+                        wrapperStyle={{
                           color: 'var(--foreground)',
                           fontSize: '12px',
                           paddingTop: '16px'
-                        }} 
+                        }}
                         iconType="line"
                       />
                       <Line
@@ -429,7 +437,7 @@ export const ReportsPage: React.FC = () => {
                     <div
                       className={`${isMobile ? "space-y-2" : "text-right space-y-2"}`}
                     >
-                      <Badge className={getStatusColor(session.status)}>
+                      <Badge variant="secondary" className={getStatusColor(session.status)}>
                         <span className="flex items-center gap-1">
                           {getStatusIcon(session.status)}
                           {session.status}
@@ -444,15 +452,7 @@ export const ReportsPage: React.FC = () => {
                             1000 /
                             60,
                           )}
-                          h{" "}
-                          {Math.floor(
-                            ((session.endTime.getTime() -
-                              session.startTime.getTime()) /
-                              1000 /
-                              60) *
-                            100,
-                          )}
-                          m
+                          {" "}min{" "}
                         </div>
                       )}
                     </div>
