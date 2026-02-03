@@ -76,7 +76,9 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+          Dashboard
+        </h1>
         <p className="text-muted-foreground">
           Monitor your dryer performance and current status
         </p>
@@ -170,18 +172,21 @@ export const HomePage: React.FC = () => {
                   <span>
                     {Math.floor(
                       (Date.now() - currentSession.startTime.getTime()) /
-                      (1000 * 60 * 60),
+                        (1000 * 60 * 60),
                     )}
                     h{" "}
                     {Math.floor(
                       ((Date.now() - currentSession.startTime.getTime()) /
                         (1000 * 60)) %
-                      60,
+                        60,
                     )}
                     m
                   </span>
                 </div>
-                <Badge variant="secondary" className={getStatusColor(currentSession.status)}>
+                <Badge
+                  variant="secondary"
+                  className={getStatusColor(currentSession.status)}
+                >
                   <span className="flex items-center gap-1">
                     {getStatusIcon(currentSession.status)}
                     {currentSession.status}
@@ -202,11 +207,8 @@ export const HomePage: React.FC = () => {
             <CardDescription>Latest drying activities</CardDescription>
           </CardHeader>
           <CardContent>
-
             <div className="space-y-4">
-
               {mockSessions.slice(0, 3).map((session) => (
-
                 <div key={session.id} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
@@ -215,7 +217,10 @@ export const HomePage: React.FC = () => {
                       })}
                       <span className="font-medium">{session.product}</span>
                     </div>
-                    <Badge variant="secondary" className={getStatusColor(session.status)}>
+                    <Badge
+                      variant="secondary"
+                      className={getStatusColor(session.status)}
+                    >
                       <span className="flex items-center gap-1">
                         {getStatusIcon(session.status)}
                         {session.status}
@@ -231,14 +236,14 @@ export const HomePage: React.FC = () => {
                         {Math.floor(
                           (session.endTime.getTime() -
                             session.startTime.getTime()) /
-                          (1000 * 60 * 60),
+                            (1000 * 60 * 60),
                         )}
                         h{" "}
                         {Math.floor(
                           ((session.endTime.getTime() -
                             session.startTime.getTime()) /
                             (1000 * 60)) %
-                          60,
+                            60,
                         )}
                         m
                       </>

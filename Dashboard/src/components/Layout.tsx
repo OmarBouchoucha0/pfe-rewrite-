@@ -80,8 +80,12 @@ export const Layout: React.FC = () => {
                   className="w-full justify-start mb-2 px-4 transition-all duration-200 ease-out hover:cursor-pointer"
                   onClick={() => navigate(item.path)}
                 >
-                  <Icon className={`h-4 w-4 mr-3 transition-all duration-200 ease-out ${!isActive ? 'dark:text-white' : ''}`} />
-                  <span className={`transition-opacity duration-200 ease-out ${!isActive ? 'text-foreground' : ''}`}>
+                  <Icon
+                    className={`h-4 w-4 mr-3 transition-all duration-200 ease-out ${!isActive ? "dark:text-white" : ""}`}
+                  />
+                  <span
+                    className={`transition-opacity duration-200 ease-out ${!isActive ? "text-foreground" : ""}`}
+                  >
                     {item.label}
                   </span>
                 </Button>
@@ -96,7 +100,9 @@ export const Layout: React.FC = () => {
                     <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate text-foreground">{user.name}</p>
+                    <p className="text-sm font-medium truncate text-foreground">
+                      {user.name}
+                    </p>
                     <p className="text-xs capitalize truncate text-muted-foreground">
                       {user.role}
                     </p>
@@ -162,7 +168,7 @@ export const Layout: React.FC = () => {
                   )}
                 </Button>
               )}
-              
+
               {/* User Avatar - Desktop: Dropdown, Mobile: Profile Sheet */}
               {isMobile ? (
                 <MobileProfileSheet />
@@ -207,9 +213,11 @@ export const Layout: React.FC = () => {
         </header>
 
         {/* Main Content */}
-        <main className={`flex-1 overflow-auto bg-background ${
-          isMobile ? "p-4 pb-20" : "p-4 sm:p-6"
-        }`}>
+        <main
+          className={`flex-1 overflow-auto bg-background ${
+            isMobile ? "p-4 pb-20" : "p-4 sm:p-6"
+          }`}
+        >
           <Outlet />
         </main>
       </div>

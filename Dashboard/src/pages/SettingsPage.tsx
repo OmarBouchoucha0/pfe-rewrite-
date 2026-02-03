@@ -68,7 +68,9 @@ export const SettingsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">Settings</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+          Settings
+        </h1>
         <p className="text-muted-foreground">
           Manage your dryer settings and preferences
         </p>
@@ -107,7 +109,11 @@ export const SettingsPage: React.FC = () => {
                     setUserProfile({ ...userProfile, email: e.target.value })
                   }
                 />
-                <Button variant="outline" size="icon" className="h-8 w-8 md:h-10 md:w-10">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 md:h-10 md:w-10"
+                >
                   <Mail className="h-4 w-4" />
                 </Button>
               </div>

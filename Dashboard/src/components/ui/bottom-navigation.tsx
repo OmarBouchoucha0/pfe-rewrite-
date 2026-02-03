@@ -3,13 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import {
-  Home,
-  Sliders,
-  BarChart3,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { Home, Sliders, BarChart3, Settings, LogOut } from "lucide-react";
 
 interface BottomNavigationItem {
   path: string;
@@ -47,7 +41,7 @@ export const BottomNavigation: React.FC = () => {
         {bottomNavItems.map((item) => {
           const Icon = item.icon;
           const isActive = item.path === location.pathname && !item.isLogout;
-          
+
           return (
             <Button
               key={item.path}
@@ -55,13 +49,16 @@ export const BottomNavigation: React.FC = () => {
               size="icon"
               className={cn(
                 "flex-1 h-12 w-12 rounded-lg transition-all duration-200 hover:bg-accent",
-                isActive && "bg-primary text-primary-foreground hover:bg-primary/90"
+                isActive &&
+                  "bg-primary text-primary-foreground hover:bg-primary/90",
               )}
               onClick={() => handleItemClick(item)}
               title={item.label}
               aria-label={item.label}
             >
-              <Icon className={`h-6 w-6 ${!isActive ? 'dark:text-white' : ''}`} />
+              <Icon
+                className={`h-6 w-6 ${!isActive ? "dark:text-white" : ""}`}
+              />
             </Button>
           );
         })}

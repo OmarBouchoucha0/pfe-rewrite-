@@ -34,7 +34,15 @@ import {
   Line,
   Legend,
 } from "recharts";
-import { CheckCircle, Clock, AlertCircle, Play, Monitor, Smartphone, Download } from "lucide-react";
+import {
+  CheckCircle,
+  Clock,
+  AlertCircle,
+  Play,
+  Monitor,
+  Smartphone,
+  Download,
+} from "lucide-react";
 
 export const ReportsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState("30");
@@ -90,7 +98,9 @@ export const ReportsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">Reports</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            Reports
+          </h1>
           <p className="text-muted-foreground">
             View dryer performance history and analytics
           </p>
@@ -163,10 +173,16 @@ export const ReportsPage: React.FC = () => {
                     height={isMobile ? 200 : 300}
                   >
                     <LineChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="var(--border)"
+                      />
                       <XAxis
                         dataKey="date"
-                        tick={{ fontSize: isMobile ? 10 : 11, fill: 'var(--foreground)' }}
+                        tick={{
+                          fontSize: isMobile ? 10 : 11,
+                          fill: "var(--foreground)",
+                        }}
                         angle={isMobile ? -90 : -45}
                         textAnchor="end"
                         height={isMobile ? 80 : 60}
@@ -174,30 +190,30 @@ export const ReportsPage: React.FC = () => {
                           isMobile
                             ? Math.floor(historicalData.length / 5)
                             : Math.max(
-                              1,
-                              Math.floor(historicalData.length / 10),
-                            )
+                                1,
+                                Math.floor(historicalData.length / 10),
+                              )
                         }
                       />
-                      <YAxis tick={{ fill: 'var(--foreground)' }} />
+                      <YAxis tick={{ fill: "var(--foreground)" }} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: 'var(--popover)',
-                          color: 'var(--popover-foreground)',
-                          border: '1px solid var(--border)',
-                          borderRadius: 'var(--radius)',
-                          fontSize: '12px'
+                          backgroundColor: "var(--popover)",
+                          color: "var(--popover-foreground)",
+                          border: "1px solid var(--border)",
+                          borderRadius: "var(--radius)",
+                          fontSize: "12px",
                         }}
                         labelStyle={{
-                          color: 'var(--foreground)',
-                          fontWeight: 'bold'
+                          color: "var(--foreground)",
+                          fontWeight: "bold",
                         }}
                       />
                       <Legend
                         wrapperStyle={{
-                          color: 'var(--foreground)',
-                          fontSize: '12px',
-                          paddingTop: '16px'
+                          color: "var(--foreground)",
+                          fontSize: "12px",
+                          paddingTop: "16px",
                         }}
                         iconType="line"
                       />
@@ -225,10 +241,16 @@ export const ReportsPage: React.FC = () => {
                     height={isMobile ? 200 : 300}
                   >
                     <LineChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="var(--border)"
+                      />
                       <XAxis
                         dataKey="date"
-                        tick={{ fontSize: isMobile ? 10 : 11, fill: 'var(--foreground)' }}
+                        tick={{
+                          fontSize: isMobile ? 10 : 11,
+                          fill: "var(--foreground)",
+                        }}
                         angle={isMobile ? -90 : -45}
                         textAnchor="end"
                         height={isMobile ? 80 : 60}
@@ -236,30 +258,30 @@ export const ReportsPage: React.FC = () => {
                           isMobile
                             ? Math.floor(historicalData.length / 5)
                             : Math.max(
-                              1,
-                              Math.floor(historicalData.length / 10),
-                            )
+                                1,
+                                Math.floor(historicalData.length / 10),
+                              )
                         }
                       />
-                      <YAxis tick={{ fill: 'var(--foreground)' }} />
+                      <YAxis tick={{ fill: "var(--foreground)" }} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: 'var(--popover)',
-                          color: 'var(--popover-foreground)',
-                          border: '1px solid var(--border)',
-                          borderRadius: 'var(--radius)',
-                          fontSize: '12px'
+                          backgroundColor: "var(--popover)",
+                          color: "var(--popover-foreground)",
+                          border: "1px solid var(--border)",
+                          borderRadius: "var(--radius)",
+                          fontSize: "12px",
                         }}
                         labelStyle={{
-                          color: 'var(--foreground)',
-                          fontWeight: 'bold'
+                          color: "var(--foreground)",
+                          fontWeight: "bold",
                         }}
                       />
                       <Legend
                         wrapperStyle={{
-                          color: 'var(--foreground)',
-                          fontSize: '12px',
-                          paddingTop: '16px'
+                          color: "var(--foreground)",
+                          fontSize: "12px",
+                          paddingTop: "16px",
                         }}
                         iconType="line"
                       />
@@ -287,10 +309,16 @@ export const ReportsPage: React.FC = () => {
                     height={isMobile ? 200 : 300}
                   >
                     <BarChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="var(--border)"
+                      />
                       <XAxis
                         dataKey="date"
-                        tick={{ fontSize: isMobile ? 10 : 11, fill: 'var(--foreground)' }}
+                        tick={{
+                          fontSize: isMobile ? 10 : 11,
+                          fill: "var(--foreground)",
+                        }}
                         angle={isMobile ? -90 : -45}
                         textAnchor="end"
                         height={isMobile ? 80 : 60}
@@ -298,34 +326,38 @@ export const ReportsPage: React.FC = () => {
                           isMobile
                             ? Math.floor(historicalData.length / 5)
                             : Math.max(
-                              1,
-                              Math.floor(historicalData.length / 10),
-                            )
+                                1,
+                                Math.floor(historicalData.length / 10),
+                              )
                         }
                       />
-                      <YAxis tick={{ fill: 'var(--foreground)' }} />
+                      <YAxis tick={{ fill: "var(--foreground)" }} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: 'var(--popover)',
-                          color: 'var(--popover-foreground)',
-                          border: '1px solid var(--border)',
-                          borderRadius: 'var(--radius)',
-                          fontSize: '12px'
+                          backgroundColor: "var(--popover)",
+                          color: "var(--popover-foreground)",
+                          border: "1px solid var(--border)",
+                          borderRadius: "var(--radius)",
+                          fontSize: "12px",
                         }}
                         labelStyle={{
-                          color: 'var(--foreground)',
-                          fontWeight: 'bold'
+                          color: "var(--foreground)",
+                          fontWeight: "bold",
                         }}
                       />
                       <Legend
                         wrapperStyle={{
-                          color: 'var(--foreground)',
-                          fontSize: '12px',
-                          paddingTop: '16px'
+                          color: "var(--foreground)",
+                          fontSize: "12px",
+                          paddingTop: "16px",
                         }}
                         iconType="rect"
                       />
-                      <Bar dataKey="sessions" fill="var(--chart-3)" name="Sessions" />
+                      <Bar
+                        dataKey="sessions"
+                        fill="var(--chart-3)"
+                        name="Sessions"
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -344,10 +376,16 @@ export const ReportsPage: React.FC = () => {
                     height={isMobile ? 200 : 300}
                   >
                     <LineChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="var(--border)"
+                      />
                       <XAxis
                         dataKey="date"
-                        tick={{ fontSize: isMobile ? 10 : 11, fill: 'var(--foreground)' }}
+                        tick={{
+                          fontSize: isMobile ? 10 : 11,
+                          fill: "var(--foreground)",
+                        }}
                         angle={isMobile ? -90 : -45}
                         textAnchor="end"
                         height={isMobile ? 80 : 60}
@@ -355,30 +393,30 @@ export const ReportsPage: React.FC = () => {
                           isMobile
                             ? Math.floor(historicalData.length / 5)
                             : Math.max(
-                              1,
-                              Math.floor(historicalData.length / 10),
-                            )
+                                1,
+                                Math.floor(historicalData.length / 10),
+                              )
                         }
                       />
-                      <YAxis tick={{ fill: 'var(--foreground)' }} />
+                      <YAxis tick={{ fill: "var(--foreground)" }} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: 'var(--popover)',
-                          color: 'var(--popover-foreground)',
-                          border: '1px solid var(--border)',
-                          borderRadius: 'var(--radius)',
-                          fontSize: '12px'
+                          backgroundColor: "var(--popover)",
+                          color: "var(--popover-foreground)",
+                          border: "1px solid var(--border)",
+                          borderRadius: "var(--radius)",
+                          fontSize: "12px",
                         }}
                         labelStyle={{
-                          color: 'var(--foreground)',
-                          fontWeight: 'bold'
+                          color: "var(--foreground)",
+                          fontWeight: "bold",
                         }}
                       />
                       <Legend
                         wrapperStyle={{
-                          color: 'var(--foreground)',
-                          fontSize: '12px',
-                          paddingTop: '16px'
+                          color: "var(--foreground)",
+                          fontSize: "12px",
+                          paddingTop: "16px",
                         }}
                         iconType="line"
                       />
@@ -437,7 +475,10 @@ export const ReportsPage: React.FC = () => {
                     <div
                       className={`${isMobile ? "space-y-2" : "text-right space-y-2"}`}
                     >
-                      <Badge variant="secondary" className={getStatusColor(session.status)}>
+                      <Badge
+                        variant="secondary"
+                        className={getStatusColor(session.status)}
+                      >
                         <span className="flex items-center gap-1">
                           {getStatusIcon(session.status)}
                           {session.status}
@@ -449,10 +490,10 @@ export const ReportsPage: React.FC = () => {
                           {Math.floor(
                             (session.endTime.getTime() -
                               session.startTime.getTime()) /
-                            1000 /
-                            60,
-                          )}
-                          {" "}min{" "}
+                              1000 /
+                              60,
+                          )}{" "}
+                          min{" "}
                         </div>
                       )}
                     </div>

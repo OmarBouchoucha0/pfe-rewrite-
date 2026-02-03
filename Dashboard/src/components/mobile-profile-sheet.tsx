@@ -7,7 +7,6 @@ import { useAuth } from "@/hooks/use-auth";
 import { useTheme } from "@/hooks/use-theme";
 import { Sun, Moon, User, LogOut } from "lucide-react";
 
-
 export const MobileProfileSheet: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
@@ -41,9 +40,9 @@ export const MobileProfileSheet: React.FC = () => {
           <User className="h-6 w-6 dark:text-white" />
         </Button>
       </SheetTrigger>
-      
-      <SheetContent 
-        side="bottom" 
+
+      <SheetContent
+        side="bottom"
         className="rounded-t-2xl border-0 bg-card animate-slide-up"
       >
         <div className="px-6 py-8 space-y-6">
