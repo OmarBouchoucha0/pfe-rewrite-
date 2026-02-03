@@ -81,7 +81,7 @@ export const Layout: React.FC = () => {
                   onClick={() => navigate(item.path)}
                 >
                   <Icon className="h-4 w-4 mr-3 transition-all duration-200 ease-out" />
-                  <span className="transition-opacity duration-200 ease-out">
+                  <span className="text-foreground transition-opacity duration-200 ease-out">
                     {item.label}
                   </span>
                 </Button>

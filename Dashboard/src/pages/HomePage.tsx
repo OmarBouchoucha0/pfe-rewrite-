@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import {
   generateMockSensorData,
   mockSessions,
@@ -171,13 +170,13 @@ export const HomePage: React.FC = () => {
                   <span>
                     {Math.floor(
                       (Date.now() - currentSession.startTime.getTime()) /
-                        (1000 * 60 * 60),
+                      (1000 * 60 * 60),
                     )}
                     h{" "}
                     {Math.floor(
                       ((Date.now() - currentSession.startTime.getTime()) /
                         (1000 * 60)) %
-                        60,
+                      60,
                     )}
                     m
                   </span>
@@ -203,8 +202,11 @@ export const HomePage: React.FC = () => {
             <CardDescription>Latest drying activities</CardDescription>
           </CardHeader>
           <CardContent>
+
             <div className="space-y-4">
+
               {mockSessions.slice(0, 3).map((session) => (
+
                 <div key={session.id} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
@@ -222,28 +224,26 @@ export const HomePage: React.FC = () => {
                   </div>
                   <div className="text-sm text-muted-foreground">
                     {session.startTime.toLocaleDateString()}{" "}
-                    {session.startTime.toLocaleTimeString()}
+                    {session.startTime.toLocaleTimeString()}{" "}
                     {session.endTime && (
                       <>
-                        <br />
                         Duration:{" "}
                         {Math.floor(
                           (session.endTime.getTime() -
                             session.startTime.getTime()) /
-                            (1000 * 60 * 60),
+                          (1000 * 60 * 60),
                         )}
                         h{" "}
                         {Math.floor(
                           ((session.endTime.getTime() -
                             session.startTime.getTime()) /
                             (1000 * 60)) %
-                            60,
+                          60,
                         )}
                         m
                       </>
                     )}
                   </div>
-                  {session.id !== mockSessions[0].id && <Separator />}
                 </div>
               ))}
             </div>

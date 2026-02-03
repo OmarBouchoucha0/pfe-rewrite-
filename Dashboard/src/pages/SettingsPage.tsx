@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import {
   Card,
   CardContent,
@@ -53,16 +54,16 @@ export const SettingsPage: React.FC = () => {
   });
 
   const handleSaveSettings = () => {
-    alert("Settings saved successfully!");
+    toast.success("Settings saved successfully!");
   };
 
   const handleResetSettings = () => {
     setSettings(mockSettings);
-    alert("Settings reset to defaults");
+    toast("Settings reset to defaults");
   };
 
   const handleSaveProfile = () => {
-    alert("Profile updated successfully!");
+    toast.success("Profile updated successfully!");
   };
 
   return (
@@ -137,9 +138,6 @@ export const SettingsPage: React.FC = () => {
                   type="password"
                   placeholder="Enter new password"
                 />
-                <Button variant="outline" size="icon" className="h-8 w-8 md:h-10 md:w-10">
-                  <Key className="h-4 w-4" />
-                </Button>
               </div>
             </div>
 
@@ -249,7 +247,7 @@ export const SettingsPage: React.FC = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-      <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             <div className="space-y-4">
               <h4 className="font-medium">Notification Channels</h4>
               <div className="space-y-3">

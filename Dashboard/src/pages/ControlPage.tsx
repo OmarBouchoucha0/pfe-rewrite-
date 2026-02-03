@@ -248,7 +248,7 @@ export const ControlPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Thermometer className="h-4 w-4 text-orange-500" />
+                  <Thermometer className="h-4 w-4 text-[var(--chart-1)]" />
                   <span className="text-sm font-medium">Current Temp</span>
                 </div>
                 <div className="text-2xl font-bold">
@@ -258,7 +258,7 @@ export const ControlPage: React.FC = () => {
 
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Droplets className="h-4 w-4 text-blue-500" />
+                  <Droplets className="h-4 w-4 text-[var(--chart-2)]" />
                   <span className="text-sm font-medium">Current Humidity</span>
                 </div>
                 <div className="text-2xl font-bold">
@@ -271,7 +271,7 @@ export const ControlPage: React.FC = () => {
 
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-green-500" />
+                <Clock className="h-4 w-4 text-[var(--status-completed)]" />
                 <span className="text-sm font-medium">Elapsed Time</span>
               </div>
               <div className="text-2xl font-bold">
@@ -282,7 +282,7 @@ export const ControlPage: React.FC = () => {
             {selectedProduct && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <SettingsIcon className="h-4 w-4 text-purple-500" />
+                  <SettingsIcon className="h-4 w-4 text-[var(--chart-3)]" />
                   <span className="text-sm font-medium">Product Settings</span>
                 </div>
                 <div className="text-sm text-muted-foreground space-y-1">
@@ -296,12 +296,12 @@ export const ControlPage: React.FC = () => {
             )}
 
             {!isRunning && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-                <div className="flex items-center gap-2 text-amber-800">
+              <div className="bg-muted/50 border-border rounded-lg p-3">
+                <div className="flex items-center gap-2 text-foreground">
                   <AlertTriangle className="h-4 w-4" />
                   <span className="text-sm font-medium">No active session</span>
                 </div>
-                <div className="text-sm text-amber-700 mt-1">
+                <div className="text-sm text-muted-foreground mt-1">
                   Configure parameters and press Start to begin drying
                 </div>
               </div>
