@@ -1,10 +1,11 @@
+import React from "react";
 import { CheckCircle, Clock, AlertCircle, Play, Pause } from "lucide-react";
 import type { SessionStatus } from "../types";
 
 /**
  * Get the status icon component for a session status
  */
-export function getStatusIcon(status: SessionStatus): JSX.Element {
+export function getStatusIcon(status: SessionStatus): React.ReactElement {
   switch (status) {
     case "running":
       return (

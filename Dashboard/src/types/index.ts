@@ -12,6 +12,8 @@ export interface SensorData {
   timestamp: Date;
 }
 
+export type SessionStatus = "running" | "completed" | "paused" | "failed";
+
 export interface DryerSession {
   id: string;
   product: string;
@@ -19,7 +21,7 @@ export interface DryerSession {
   endTime?: Date;
   targetTemperature: number;
   targetHumidity: number;
-  status: "running" | "completed" | "paused" | "failed";
+  status: SessionStatus;
 }
 
 export interface DryerSettings {
